@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝 memU 笔记应用</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            flex: 1;
+        }
+
+        .search-box button {
+            width: auto;
+            padding: 12px 25px;
+        }
+
+        .results {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .note-item {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .note-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .note-similarity {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .note-category {
+            display: inline-block;
+            background: #764ba2;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .note-content {
+            color: #555;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .empty-state svg {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .stats {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .stats h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stats .count {
+            font-size: 3em;
+            color: #764ba2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 memU 智能笔记</h1>
+            <p>基于语义搜索的智能笔记系统</p>
+        </div>
+
+        <div class="main-content">
+            <!-- 添加笔记 -->
+            <div class="card">
+                <h2>✏️ 新建笔记</h2>
+                <div id="addMessage" class="message"></div>
+                <form id="addNoteForm">
+                    <div class="form-group">
+                        <label for="title">标题 *</label>
+                        <input type="text" id="title" required placeholder="输入笔记标题">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">内容 *</label>
+                        <textarea id="content" required placeholder="输入笔记内容"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="tags">标签 <span style="color: #999; font-size: 12px;">（留空则自动生成 🤖）</span></label>
+                        <input type="text" id="tags" placeholder="留空自动生成，或手动输入，用逗号分隔">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">分类</label>
+                        <input type="text" id="category" value="note" placeholder="笔记分类">
+                    </div>
+                    <button type="submit" class="btn">💾 保存笔记</button>
+                </form>
+            </div>
+
+            <!-- 搜索笔记 -->
+            <div class="card">
+                <h2>🔍 搜索笔记</h2>
+                <div id="searchMessage" class="message"></div>
+                <div class="search-box">
+                    <input type="text" id="searchQuery" placeholder="输入搜索关键词...">
+                    <button onclick="searchNotes()" class="btn">搜索</button>
+                </div>
+                <div id="searchResults" class="results"></div>
+            </div>
+        </div>
+
+        <!-- 统计信息 -->
+        <div class="stats">
+            <h3>📊 笔记统计</h3>
+            <div class="count" id="noteCount">-</div>
+            <p>条笔记</p>
+        </div>
+    </div>
+
+    <script>
+        // API 基础地址
+        const API_BASE = '';
+
+        // 显示消息
+        function showMessage(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = `message ${type} show`;
+            setTimeout(() => {
+                element.className = 'message';
+            }, 5000);
+        }
+
+        // 添加笔记
+        document.getElementById('addNoteForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const tagsStr = document.getElementById('tags').value;
+            const category = document.getElementById('category').value || 'note';
+            
+            // 如果标签为空，传 null 让后端自动生成
+            const tags = tagsStr ? tagsStr.split(',').map(t => t.trim()).filter(t => t) : null;
+            
+            // 显示加载提示
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = tags ? '💾 保存中...' : '🤖 AI 生成标签中...';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/notes`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title,
+                        content,
+                        tags,
+                        category,
+                    }),
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    const message = data.auto_tags 
+                        ? `✅ ${data.message}（AI 自动生成标签: ${data.auto_tags.join(', ')}）`
+                        : `✅ ${data.message}`;
+                    showMessage('addMessage', message, 'success');
+                    document.getElementById('addNoteForm').reset();
+                    document.getElementById('category').value = 'note';
+                    
+                    // 刷新搜索结果
+                    setTimeout(() => {
+                        if (document.getElementById('searchQuery').value) {
+                            searchNotes();
+                        }
+                    }, 1000);
+                } else {
+                    showMessage('addMessage', `❌ 保存失败: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                showMessage('addMessage', `❌ 保存失败: ${error.message}`, 'error');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // 搜索笔记
+        async function searchNotes() {
+            const query = document.getElementById('searchQuery').value;
+            const resultsDiv = document.getElementById('searchResults');
+            
+            if (!query.trim()) {
+                resultsDiv.innerHTML = '<div class="empty-state">💡 请输入搜索关键词</div>';
+                return;
+            }
+            
+            resultsDiv.innerHTML = '<div class="loading">🔄 搜索中...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/notes/search`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        query,
+                        top_k: 10,
+                        min_similarity: 0.2,
+                    }),
+                });
+                
+                const data = await response.json();
+                
+                if (data.success && data.results.length > 0) {
+                    resultsDiv.innerHTML = data.results.map(note => `
+                        <div class="note-item">
+                            <div>
+                                <span class="note-similarity">相似度: ${(note.similarity_score * 100).toFixed(1)}%</span>
+                                <span class="note-category">${note.category}</span>
+                            </div>
+                            <div class="note-content">${note.content}</div>
+                        </div>
+                    `).join('');
+                    
+                    showMessage('searchMessage', `✅ 找到 ${data.count} 条相关笔记`, 'success');
+                    updateNoteCount(data.count);
+                } else {
+                    resultsDiv.innerHTML = '<div class="empty-state">📭 没有找到相关笔记</div>';
+                    showMessage('searchMessage', '📭 没有找到相关笔记', 'error');
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = '<div class="empty-state">❌ 搜索失败</div>';
+                showMessage('searchMessage', `❌ 搜索失败: ${error.message}`, 'error');
+            }
+        }
+
+        // 更新笔记数量
+        function updateNoteCount(count) {
+            document.getElementById('noteCount').textContent = count;
+        }
+
+        // 回车搜索
+        document.getElementById('searchQuery').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchNotes();
+            }
+        });
+
+        // 页面加载时检查健康状态
+        window.addEventListener('load', async () => {
+            try {
+                const response = await fetch(`${API_BASE}/api/health`);
+                const data = await response.json();
+                console.log('✅ 服务器状态:', data.message);
+            } catch (error) {
+                console.error('❌ 无法连接到服务器:', error);
+                showMessage('searchMessage', '⚠️ 无法连接到服务器，请确保后端服务正在运行', 'error');
+            }
+        });
+    </script>
+</body>
+</html>

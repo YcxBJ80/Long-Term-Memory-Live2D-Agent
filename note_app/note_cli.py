@@ -78,29 +78,38 @@ def list_notes(client: MemuNoteClient, args):
         results = client.list_all_memories()
         
         if not results:
-            print("\n📭 还没有任何笔记")
             return
         
-        print(f"\n📚 共有 {len(results)} 条笔记:\n")
-        print("=" * 80)
+        print(f"\n📚 共有 {len(results)} 条记忆:\n")
+        print("=" * 100)
+        print(f"{'序号':<6} {'分类':<12} {'日期':<12} {'标签':<30} {'内容预览'}")
+        print("=" * 100)
         
         for i, note in enumerate(results, 1):
-            print(f"\n{i}. {note.get('category', 'note')}")
+            category = note.get('category', 'unknown')
+            date = note.get('date', 'unknown')
+            tags = note.get('tags', [])
+            content = note.get('content', '')
             
-            # 尝试从内容中提取标题
-            content = note['content']
-            first_line = content.split('\n')[0]
-            if first_line.startswith('[笔记]'):
-                title = first_line.replace('[笔记]', '').strip()
-                print(f"   标题: {title}")
+            # 标签显示
+            tags_str = ', '.join(tags[:3]) if tags else '-'
+            if len(tags) > 3:
+                tags_str += f' (+{len(tags)-3})'
             
-            # 显示内容预览
-            preview = content[:100].replace('\n', ' ')
-            print(f"   预览: {preview}...")
-            print("-" * 80)
+            # 内容预览（去除多余空格和换行）
+            preview = content[:50].replace('\n', ' ').strip()
+            if len(content) > 50:
+                preview += '...'
+            
+            print(f"{i:<6} {category:<12} {date:<12} {tags_str:<30} {preview}")
+        
+        print("=" * 100)
+        print(f"\n💡 提示：使用 search 命令可以搜索特定内容")
             
     except Exception as e:
         print(f"\n❌ 列出笔记失败: {e}")
+        import traceback
+        traceback.print_exc()
         sys.exit(1)
 
 
