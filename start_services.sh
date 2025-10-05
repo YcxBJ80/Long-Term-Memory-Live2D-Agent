@@ -1,45 +1,39 @@
 #!/bin/bash
 
-# 启动 memU 和 Open-LLM-VTuber 的脚本
+# Script to start memU and Open-LLM-VTuber services
 
-echo "🚀 启动服务..."
-echo ""
+echo "🚀 Starting services..."
 
-# 检查 LMStudio 是否在运行
-echo "📋 检查 LMStudio 服务..."
-if curl -s http://127.0.0.1:1234/v1/models >/dev/null 2>&1; then
-    echo "✅ LMStudio 服务正常运行"
+# Check if LMStudio is running
+echo "📋 Checking LMStudio service..."
+if curl -s http://127.0.0.1:1234/v1/models > /dev/null 2>&1; then
+    echo "✅ LMStudio service is running normally"
 else
-    echo "❌ 警告: LMStudio 服务未运行！"
-    echo "   请先启动 LMStudio 并加载模型: openai/gpt-oss-20b"
-    echo "   LMStudio 应该监听在 http://127.0.0.1:1234"
-    echo ""
+    echo "❌ Warning: LMStudio service is not running!"
+    echo "   Please start LMStudio first and load model: qwen3-30b-a3b-2507"
+    echo "   LMStudio should listen on http://127.0.0.1:1234"
 fi
 
-# 检查 memU 是否在运行
-echo "📋 检查 memU 服务..."
-if lsof -i :8000 >/dev/null 2>&1; then
-    echo "✅ memU 服务已在运行 (端口 8000)"
+# Check if memU is running
+echo "📋 Checking memU service..."
+if curl -s http://127.0.0.1:8000/api/health > /dev/null 2>&1; then
+    echo "✅ memU service is already running (port 8000)"
 else
-    echo "🔧 启动 memU 服务..."
-    cd /Users/yangchengxuan/Desktop/PROJECTS/Live2Document_4/memU
-    nohup python3.12 -m memu.server.cli start > memu.log 2>&1 &
-    echo "   memU 日志: memU/memu.log"
+    echo "🔧 Starting memU service..."
+    cd memU
+    nohup python -m memu.server.main > memu.log 2>&1 &
+    echo "   memU log: memU/memu.log"
     sleep 3
-    if lsof -i :8000 >/dev/null 2>&1; then
-        echo "✅ memU 服务启动成功"
+    if curl -s http://127.0.0.1:8000/api/health > /dev/null 2>&1; then
+        echo "✅ memU service started successfully"
     else
-        echo "❌ memU 服务启动失败，请查看日志"
+        echo "❌ memU service failed to start, please check logs"
     fi
+    cd ..
 fi
 
-echo ""
-echo "🎭 启动 Open-LLM-VTuber..."
-cd /Users/yangchengxuan/Desktop/PROJECTS/Live2Document_4/Open-LLM-VTuber
-echo "   访问地址: http://localhost:12393"
-echo ""
-echo "按 Ctrl+C 停止服务"
-echo "================================"
-echo ""
-
-uv run python run_server.py
+echo "🎭 Starting Open-LLM-VTuber..."
+cd Open-LLM-VTuber
+echo "   Access URL: http://localhost:12393"
+python run_server.py
+echo "Press Ctrl+C to stop services"

@@ -143,13 +143,21 @@ async def search_notes(search: NoteSearch):
 
 @app.get("/api/notes")
 async def list_notes():
-    """列出所有笔记"""
+    """列出所有笔记 - 从 memU 数据库加载所有记忆"""
     try:
-        results = memu_client.search_notes(
-            query="笔记",
-            top_k=100,
-            min_similarity=0.1,
-        )
+        # 调用 memU API 获取所有默认分类的记忆
+        all_memories = memu_client.get_all_memories()
+        
+        # 转换为笔记格式
+        results = []
+        for memory in all_memories:
+            results.append({
+                "memory_id": memory.get("memory_id", ""),
+                "category": memory.get("category", "note"),
+                "content": memory.get("content", ""),
+                "similarity_score": 1.0,  # 默认相似度为 1.0（表示是直接加载的）
+            })
+        
         return {
             "success": True,
             "count": len(results),

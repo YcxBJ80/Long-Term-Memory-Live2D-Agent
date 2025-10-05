@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-memU 笔记软件 - 图形界面版本
-使用 tkinter 创建简单的图形界面
+memU Note Software - GUI Version
+Create a simple graphical interface using tkinter
 """
 
 import tkinter as tk
@@ -12,77 +12,77 @@ import threading
 
 
 class NoteApp:
-    """memU 笔记应用图形界面"""
+    """memU Note Application GUI"""
 
     def __init__(self, root):
         self.root = root
-        self.root.title("📝 memU 笔记软件")
+        self.root.title("📝 memU Note Software")
         self.root.geometry("900x700")
         
-        # 初始化 memU 客户端
+        # Initialize memU client
         self.client = MemuNoteClient()
         
-        # 创建界面
+        # Create interface
         self.create_widgets()
         
     def create_widgets(self):
-        """创建界面组件"""
-        # 创建笔记本（标签页）
+        """Create interface components"""
+        # Create notebook (tabs)
         self.notebook = ttk.Notebook(self.root)
         self.notebook.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         
-        # 添加笔记标签页
+        # Add note tab
         self.add_frame = ttk.Frame(self.notebook)
-        self.notebook.add(self.add_frame, text="✏️ 新建笔记")
+        self.notebook.add(self.add_frame, text="✏️ New Note")
         self.create_add_tab()
         
-        # 搜索笔记标签页
+        # Search notes tab
         self.search_frame = ttk.Frame(self.notebook)
-        self.notebook.add(self.search_frame, text="🔍 搜索笔记")
+        self.notebook.add(self.search_frame, text="🔍 Search Notes")
         self.create_search_tab()
         
-        # 状态栏
+        # Status bar
         self.status_bar = ttk.Label(
             self.root,
-            text="就绪",
+            text="Ready",
             relief=tk.SUNKEN,
             anchor=tk.W,
         )
         self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
         
     def create_add_tab(self):
-        """创建添加笔记标签页"""
-        # 标题
+        """Create add note tab"""
+        # Title
         title_frame = ttk.Frame(self.add_frame)
         title_frame.pack(fill=tk.X, padx=20, pady=10)
         
-        ttk.Label(title_frame, text="标题:", font=("Arial", 12)).pack(side=tk.LEFT)
+        ttk.Label(title_frame, text="Title:", font=("Arial", 12)).pack(side=tk.LEFT)
         self.title_entry = ttk.Entry(title_frame, font=("Arial", 12))
         self.title_entry.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=10)
         
-        # 分类
+        # Category
         category_frame = ttk.Frame(self.add_frame)
         category_frame.pack(fill=tk.X, padx=20, pady=5)
         
-        ttk.Label(category_frame, text="分类:").pack(side=tk.LEFT)
+        ttk.Label(category_frame, text="Category:").pack(side=tk.LEFT)
         self.category_entry = ttk.Entry(category_frame)
         self.category_entry.insert(0, "note")
         self.category_entry.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=10)
         
-        # 标签
+        # Tags
         tags_frame = ttk.Frame(self.add_frame)
         tags_frame.pack(fill=tk.X, padx=20, pady=5)
         
-        ttk.Label(tags_frame, text="标签:").pack(side=tk.LEFT)
+        ttk.Label(tags_frame, text="Tags:").pack(side=tk.LEFT)
         self.tags_entry = ttk.Entry(tags_frame)
         self.tags_entry.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=10)
-        ttk.Label(tags_frame, text="(用逗号分隔)", font=("Arial", 9)).pack(side=tk.LEFT)
+        ttk.Label(tags_frame, text="(comma separated)", font=("Arial", 9)).pack(side=tk.LEFT)
         
-        # 内容
+        # Content
         content_frame = ttk.Frame(self.add_frame)
         content_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=10)
         
-        ttk.Label(content_frame, text="内容:", font=("Arial", 12)).pack(anchor=tk.W)
+        ttk.Label(content_frame, text="Content:", font=("Arial", 12)).pack(anchor=tk.W)
         self.content_text = scrolledtext.ScrolledText(
             content_frame,
             font=("Arial", 11),
@@ -90,52 +90,52 @@ class NoteApp:
         )
         self.content_text.pack(fill=tk.BOTH, expand=True, pady=5)
         
-        # 按钮
+        # Buttons
         button_frame = ttk.Frame(self.add_frame)
         button_frame.pack(fill=tk.X, padx=20, pady=10)
         
         ttk.Button(
             button_frame,
-            text="💾 保存笔记",
+            text="💾 Save Note",
             command=self.save_note,
         ).pack(side=tk.LEFT, padx=5)
         
         ttk.Button(
             button_frame,
-            text="🗑️ 清空",
+            text="🗑️ Clear",
             command=self.clear_form,
         ).pack(side=tk.LEFT, padx=5)
         
     def create_search_tab(self):
-        """创建搜索笔记标签页"""
-        # 搜索框
+        """Create search notes tab"""
+        # Search box
         search_frame = ttk.Frame(self.search_frame)
         search_frame.pack(fill=tk.X, padx=20, pady=10)
         
-        ttk.Label(search_frame, text="搜索:", font=("Arial", 12)).pack(side=tk.LEFT)
+        ttk.Label(search_frame, text="Search:", font=("Arial", 12)).pack(side=tk.LEFT)
         self.search_entry = ttk.Entry(search_frame, font=("Arial", 12))
         self.search_entry.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=10)
         self.search_entry.bind("<Return>", lambda e: self.search_notes())
         
         ttk.Button(
             search_frame,
-            text="🔍 搜索",
+            text="🔍 Search",
             command=self.search_notes,
         ).pack(side=tk.LEFT, padx=5)
         
         ttk.Button(
             search_frame,
-            text="📚 显示全部",
+            text="📚 Show All",
             command=self.list_all_notes,
         ).pack(side=tk.LEFT, padx=5)
         
-        # 结果显示
+        # Result display
         result_frame = ttk.Frame(self.search_frame)
         result_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=10)
         
-        ttk.Label(result_frame, text="搜索结果:", font=("Arial", 12)).pack(anchor=tk.W)
+        ttk.Label(result_frame, text="Search Results:", font=("Arial", 12)).pack(anchor=tk.W)
         
-        # 创建树形视图
+        # Create tree view
         self.result_tree = ttk.Treeview(
             result_frame,
             columns=("similarity", "category", "preview"),
@@ -143,31 +143,31 @@ class NoteApp:
             height=15,
         )
         
-        self.result_tree.heading("#0", text="序号")
-        self.result_tree.heading("similarity", text="相似度")
-        self.result_tree.heading("category", text="分类")
-        self.result_tree.heading("preview", text="内容预览")
+        self.result_tree.heading("#0", text="No.")
+        self.result_tree.heading("similarity", text="Similarity")
+        self.result_tree.heading("category", text="Category")
+        self.result_tree.heading("preview", text="Content Preview")
         
         self.result_tree.column("#0", width=50)
         self.result_tree.column("similarity", width=80)
         self.result_tree.column("category", width=100)
         self.result_tree.column("preview", width=500)
         
-        # 滚动条
+        # Scrollbar
         scrollbar = ttk.Scrollbar(result_frame, orient=tk.VERTICAL, command=self.result_tree.yview)
         self.result_tree.configure(yscrollcommand=scrollbar.set)
         
         self.result_tree.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         
-        # 双击查看详情
+        # Double-click to view details
         self.result_tree.bind("<Double-1>", self.show_note_detail)
         
-        # 详情显示
+        # Detail display
         detail_frame = ttk.Frame(self.search_frame)
         detail_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=10)
         
-        ttk.Label(detail_frame, text="笔记详情:", font=("Arial", 12)).pack(anchor=tk.W)
+        ttk.Label(detail_frame, text="Note Details:", font=("Arial", 12)).pack(anchor=tk.W)
         self.detail_text = scrolledtext.ScrolledText(
             detail_frame,
             font=("Arial", 10),
@@ -177,7 +177,7 @@ class NoteApp:
         self.detail_text.pack(fill=tk.BOTH, expand=True, pady=5)
         
     def save_note(self):
-        """保存笔记"""
+        """Save note"""
         title = self.title_entry.get().strip()
         content = self.content_text.get("1.0", tk.END).strip()
         category = self.category_entry.get().strip() or "note"
@@ -185,15 +185,15 @@ class NoteApp:
         tags = [t.strip() for t in tags_str.split(",")] if tags_str else []
         
         if not title:
-            messagebox.showwarning("警告", "请输入笔记标题")
+            messagebox.showwarning("Warning", "Please enter note title")
             return
         
         if not content:
-            messagebox.showwarning("警告", "请输入笔记内容")
+            messagebox.showwarning("Warning", "Please enter note content")
             return
         
-        # 在后台线程中保存
-        self.status_bar.config(text="正在保存笔记...")
+        # Save in background thread
+        self.status_bar.config(text="Saving note...")
         
         def save_thread():
             try:
@@ -203,17 +203,17 @@ class NoteApp:
                     tags=tags,
                     category=category,
                 )
-                self.root.after(0, lambda: self.status_bar.config(text=f"✅ 笔记 '{title}' 已保存"))
-                self.root.after(0, lambda: messagebox.showinfo("成功", f"笔记 '{title}' 已保存到 memU！"))
+                self.root.after(0, lambda: self.status_bar.config(text=f"✅ Note '{title}' saved"))
+                self.root.after(0, lambda: messagebox.showinfo("Success", f"Note '{title}' saved to memU!"))
                 self.root.after(0, self.clear_form)
             except Exception as e:
-                self.root.after(0, lambda: self.status_bar.config(text=f"❌ 保存失败: {e}"))
-                self.root.after(0, lambda: messagebox.showerror("错误", f"保存失败: {e}"))
+                self.root.after(0, lambda: self.status_bar.config(text=f"❌ Save failed: {e}"))
+                self.root.after(0, lambda: messagebox.showerror("Error", f"Save failed: {e}"))
         
         threading.Thread(target=save_thread, daemon=True).start()
         
     def clear_form(self):
-        """清空表单"""
+        """Clear form"""
         self.title_entry.delete(0, tk.END)
         self.content_text.delete("1.0", tk.END)
         self.tags_entry.delete(0, tk.END)
@@ -221,48 +221,48 @@ class NoteApp:
         self.category_entry.insert(0, "note")
         
     def search_notes(self):
-        """搜索笔记"""
+        """Search notes"""
         query = self.search_entry.get().strip()
         
         if not query:
-            messagebox.showwarning("警告", "请输入搜索关键词")
+            messagebox.showwarning("Warning", "Please enter search keywords")
             return
         
-        # 清空结果
+        # Clear results
         for item in self.result_tree.get_children():
             self.result_tree.delete(item)
         
         self.detail_text.delete("1.0", tk.END)
-        self.status_bar.config(text=f"正在搜索 '{query}'...")
+        self.status_bar.config(text=f"Searching for '{query}'...")
         
         def search_thread():
             try:
                 results = self.client.search_notes(query)
                 self.root.after(0, lambda: self.display_results(results))
-                self.root.after(0, lambda: self.status_bar.config(text=f"找到 {len(results)} 条笔记"))
+                self.root.after(0, lambda: self.status_bar.config(text=f"Found {len(results)} notes"))
             except Exception as e:
-                self.root.after(0, lambda: self.status_bar.config(text=f"❌ 搜索失败: {e}"))
-                self.root.after(0, lambda: messagebox.showerror("错误", f"搜索失败: {e}"))
+                self.root.after(0, lambda: self.status_bar.config(text=f"❌ Search failed: {e}"))
+                self.root.after(0, lambda: messagebox.showerror("Error", f"Search failed: {e}"))
         
         threading.Thread(target=search_thread, daemon=True).start()
         
     def list_all_notes(self):
-        """列出所有笔记"""
-        # 清空结果
+        """List all notes"""
+        # Clear results
         for item in self.result_tree.get_children():
             self.result_tree.delete(item)
         
         self.detail_text.delete("1.0", tk.END)
-        self.status_bar.config(text="正在加载所有笔记...")
+        self.status_bar.config(text="Loading all notes...")
         
         def list_thread():
             try:
                 results = self.client.list_all_memories()
                 self.root.after(0, lambda: self.display_results(results))
-                self.root.after(0, lambda: self.status_bar.config(text=f"共有 {len(results)} 条笔记"))
+                self.root.after(0, lambda: self.status_bar.config(text=f"Total {len(results)} notes"))
             except Exception as e:
-                self.root.after(0, lambda: self.status_bar.config(text=f"❌ 加载失败: {e}"))
-                self.root.after(0, lambda: messagebox.showerror("错误", f"加载失败: {e}"))
+                self.root.after(0, lambda: self.status_bar.config(text=f"❌ Load failed: {e}"))
+                self.root.after(0, lambda: messagebox.showerror("Error", f"Load failed: {e}"))
         
         threading.Thread(target=list_thread, daemon=True).start()
         
@@ -304,7 +304,7 @@ class NoteApp:
 
 
 def main():
-    """主函数"""
+    """Main function"""
     root = tk.Tk()
     app = NoteApp(root)
     root.mainloop()

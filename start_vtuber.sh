@@ -23,3 +23,4 @@ else
     echo "❌ 启动失败，请查看日志: tail -f /tmp/vtuber.log"
     exit 1
 fi
+

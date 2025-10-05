@@ -4,7 +4,7 @@
 
 1. **LMStudio**
    - 下载并安装 LMStudio: https://lmstudio.ai/
-   - 加载模型: `openai/gpt-oss-20b`
+   - 加载模型: `qwen3-30b-a3b-2507`
    - 启动本地服务器，监听在 `http://127.0.0.1:1234`
    - 在 LMStudio 设置中确保启用了 OpenAI 兼容 API
 
@@ -25,7 +25,7 @@ cd /Users/yangchengxuan/Desktop/PROJECTS/Live2Document_4
 
 1. **启动 LMStudio**
    - 打开 LMStudio 应用
-   - 加载 `openai/gpt-oss-20b` 模型
+   - 加载 `qwen3-30b-a3b-2507` 模型
    - 点击 "Start Server"
 
 2. **启动 memU 服务器**
@@ -61,7 +61,7 @@ MEMU_ENABLE_EMBEDDINGS=true
 MEMU_LLM_PROVIDER=openai
 OPENAI_API_KEY=lm-studio
 OPENAI_BASE_URL=http://127.0.0.1:1234/v1
-MEMU_OPENAI_MODEL=openai/gpt-oss-20b
+MEMU_OPENAI_MODEL=qwen3-30b-a3b-2507
 
 # 嵌入模型（本地）
 MEMU_EMBEDDING_PROVIDER=custom

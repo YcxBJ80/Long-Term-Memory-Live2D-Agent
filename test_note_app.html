@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>笔记应用测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        .test-button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .test-button:hover { background: #0056b3; }
+        .result { margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 4px; }
+        .success { border-left: 4px solid #28a745; }
+        .error { border-left: 4px solid #dc3545; }
+        .info { border-left: 4px solid #17a2b8; }
+    </style>
+</head>
+<body>
+    <h1>笔记应用交互测试</h1>
+
+    <div class="test-section">
+        <h3>测试步骤</h3>
+        <ol>
+            <li>打开笔记应用: <a href="http://localhost:8080" target="_blank">http://localhost:8080</a></li>
+            <li>确认初始状态下显示"创建新笔记"</li>
+            <li>点击左侧笔记列表中的任意笔记</li>
+            <li>确认右侧只显示笔记详情，不显示创建新笔记</li>
+            <li>点击右上角"+"按钮</li>
+            <li>确认右侧切换回"创建新笔记"</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h3>预期行为</h3>
+        <ul>
+            <li>✅ 页面加载时，右侧显示"创建新笔记"</li>
+            <li>✅ 点击笔记后，右侧只显示笔记详情</li>
+            <li>✅ 点击"+"按钮后，右侧切换回创建笔记</li>
+            <li>✅ 笔记详情支持编辑、保存、删除操作</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h3>技术修复</h3>
+        <p><strong>问题</strong>: CSS 中两个区域都有显示规则，导致点击笔记后两个区域都显示</p>
+        <p><strong>解决方案</strong>:</p>
+        <ul>
+            <li>修改 CSS，默认隐藏所有区域</li>
+            <li>只有添加 active 类时才显示</li>
+            <li>页面加载时主动调用 showCreateNote() 确保初始状态正确</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h3>📁 文件修改</h3>
+        <p><strong>修改文件</strong>: note_app/web/index.html</p>
+        <p><strong>修改内容</strong>:</p>
+        <ol>
+            <li>CSS: 修改区域显示规则</li>
+            <li>JavaScript: 添加初始状态调用</li>
+            <li>JavaScript: 优化删除后状态切换顺序</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <button class="test-button" onclick="window.open('http://localhost:8080', '_blank')">
+            打开笔记应用
+        </button>
+    </div>
+</body>
+</html>

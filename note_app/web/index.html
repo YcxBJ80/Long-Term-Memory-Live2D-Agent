@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📝 memU 笔记应用</title>
+    <title>Smart Notes - memU Notes</title>
     <style>
         * {
             margin: 0;
@@ -12,287 +12,772 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f5f0 0%, #e8e8e0 50%, #f0f0e8 100%);
+            color: #2c2c2c;
             min-height: 100vh;
-            padding: 20px;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
+        /* 顶部标题栏 */
         .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
+            background: linear-gradient(135deg, #a8b8c8 0%, #7a8fa5 100%);
+            color: #2c2c2c;
+            padding: 20px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .card h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.5em;
+            font-size: 1.8em;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            width: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .search-box {
+        .header-stats {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 20px;
+            align-items: center;
         }
 
-        .search-box input {
-            flex: 1;
+        .stat-item {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 16px;
+            font-size: 0.9em;
         }
 
-        .search-box button {
-            width: auto;
-            padding: 12px 25px;
-        }
-
-        .results {
-            max-height: 600px;
-            overflow-y: auto;
-        }
-
-        .note-item {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            transition: transform 0.2s;
-        }
-
-        .note-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .note-similarity {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            margin-bottom: 8px;
-        }
-
-        .note-category {
-            display: inline-block;
-            background: #764ba2;
-            color: white;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 12px;
+        .stat-number {
+            font-weight: bold;
+            font-size: 1.2em;
             margin-left: 5px;
         }
 
-        .note-content {
-            color: #555;
-            line-height: 1.6;
-            margin-top: 10px;
-        }
-
-        .message {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            display: none;
-        }
-
-        .message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .message.show {
-            display: block;
-        }
-
-        .loading {
-            text-align: center;
+        /* 主容器 */
+        .main-container {
+            max-width: 1600px;
+            margin: 0 auto;
             padding: 20px;
-            color: #667eea;
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 20px;
+            min-height: calc(100vh - 80px);
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 左侧笔记列表 */
+        .notes-sidebar {
+            background: #faf8f5;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .sidebar-header {
+            background: linear-gradient(135deg, #b8c6d9 0%, #9ab0c4 100%);
+            color: #2c2c2c;
+            padding: 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .add-note-btn {
+            background: linear-gradient(135deg, #c8d4e3 0%, #b0c1d4 100%);
+            border: 1px solid #9ab0c4;
+            color: #2c2c2c;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .add-note-btn:hover {
+            background: linear-gradient(135deg, #d4dee8 0%, #c0d0e0 100%);
+            border-color: #8a9fb4;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-note-btn:active {
+            background: linear-gradient(135deg, #bcc6d2 0%, #a8b8c8 100%);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-section {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0d6;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            gap: 8px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #d0d0c8;
+            border-radius: 12px;
+            font-size: 14px;
+            transition: all 0.3s;
+            background: #f8f8f2;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #a8b8c8;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(168, 184, 200, 0.2);
+        }
+
+        .search-btn {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #9ab0c4 0%, #7a8fa5 100%);
+            color: #2c2c2c;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .search-btn:hover {
+            background: linear-gradient(135deg, #8a9fb4 0%, #6a7f95 100%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .notes-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .notes-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .notes-list::-webkit-scrollbar-track {
+            background: #f0f0e8;
+        }
+
+        .notes-list::-webkit-scrollbar-thumb {
+            background: #c0c0b8;
+        }
+
+        .notes-list::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a0;
+        }
+
+        .note-card {
+            background: #ffffff;
+            border-left: 4px solid #b8c6d9;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .note-card:hover {
+            background: #f8f9fa;
+            border-left-color: #9ab0c4;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .note-card.active {
+            border-left-color: #7a8fa5;
+            background: #f0f4f8;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .note-similarity {
+            background: linear-gradient(135deg, #4fc3f7 0%, #29b6f6 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .note-category {
+            background: linear-gradient(135deg, #81d4fa 0%, #4fc3f7 100%);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            margin-left: 5px;
+        }
+
+        .note-content-preview {
+            color: #5a5a5a;
+            font-size: 13px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .empty-state {
             text-align: center;
-            padding: 40px;
-            color: #999;
+            padding: 60px 20px;
+            color: #7a7a7a;
         }
 
-        .empty-state svg {
-            width: 100px;
-            height: 100px;
+        .empty-state-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            background: #e8e8e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 右侧内容区域 */
+        .right-content-section {
+            background: #faf8f5;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .create-note-section,
+        .note-detail-section {
+            display: none;
+        }
+
+        .create-note-section.active {
+            display: block;
+        }
+
+        .note-detail-section.active {
+            display: block;
+        }
+
+        .note-detail-content {
+            background: #ffffff;
+            border: 1px solid #e0e0d6;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+            line-height: 1.8;
+            font-size: 1.05em;
+            color: #2c2c2c;
+            min-height: 300px;
+            max-height: 600px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .note-detail-textarea {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid #d0d0c8;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+            line-height: 1.8;
+            font-size: 1.05em;
+            color: #2c2c2c;
+            min-height: 300px;
+            font-family: inherit;
+            resize: vertical;
+            transition: all 0.3s;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .note-detail-textarea:focus {
+            outline: none;
+            border-color: #a8b8c8;
+            background: #f8f9fa;
+            box-shadow: 0 0 0 3px rgba(168, 184, 200, 0.2);
+        }
+
+        .note-detail-textarea::placeholder {
+            color: #a0a0a0;
+        }
+
+        .note-detail-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0d6;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f0f4f8;
+            border-radius: 16px;
+            padding: 8px 15px;
+            font-size: 0.9em;
+            color: #5a5a5a;
+        }
+
+        .meta-label {
+            font-weight: 600;
+            color: #2c2c2c;
+        }
+
+        .note-detail-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .edit-mode-btn,
+        .save-edit-btn,
+        .cancel-edit-btn,
+        .delete-note-btn {
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .edit-mode-btn {
+            background: linear-gradient(135deg, #9ab0c4 0%, #7a8fa5 100%);
+            color: #2c2c2c;
+            border-radius: 6px;
+        }
+
+        .edit-mode-btn:hover {
+            background: linear-gradient(135deg, #8a9fb4 0%, #6a7f95 100%);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .save-edit-btn {
+            background: linear-gradient(135deg, #a8c8a0 0%, #8fb088 100%);
+            color: #2c2c2c;
+            border-radius: 6px;
+        }
+
+        .save-edit-btn:hover {
+            background: linear-gradient(135deg, #98b890 0%, #7fa078 100%);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .cancel-edit-btn {
+            background: linear-gradient(135deg, #d4c4b0 0%, #c0a890 100%);
+            color: #2c2c2c;
+            border-radius: 6px;
+        }
+
+        .cancel-edit-btn:hover {
+            background: linear-gradient(135deg, #c4b4a0 0%, #b09880 100%);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .delete-note-btn {
+            background: linear-gradient(135deg, #e8b4b8 0%, #d4a0a4 100%);
+            color: #2c2c2c;
+            margin-left: auto;
+            border-radius: 6px;
+        }
+
+        .delete-note-btn:hover {
+            background: linear-gradient(135deg, #d8a4a8 0%, #c49094 100%);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .edit-mode-btn:disabled,
+        .save-edit-btn:disabled,
+        .cancel-edit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .section-title {
+            color: #2c2c2c;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0d6;
+        }
+
+        .form-group {
             margin-bottom: 20px;
-            opacity: 0.3;
         }
 
-        .stats {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            text-align: center;
+        .form-label {
+            display: block;
+            color: #2c2c2c;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95em;
         }
 
-        .stats h3 {
-            color: #667eea;
-            margin-bottom: 10px;
+        .form-label .optional {
+            color: #7a7a7a;
+            font-weight: 400;
+            font-size: 0.9em;
         }
 
-        .stats .count {
-            font-size: 3em;
-            color: #764ba2;
-            font-weight: bold;
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #d0d0c8;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: #ffffff;
+            color: #2c2c2c;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #a8b8c8;
+            background: #f8f9fa;
+            box-shadow: 0 0 0 3px rgba(168, 184, 200, 0.2);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: #a0a0a0;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 200px;
+            line-height: 1.6;
+        }
+
+        .form-hint {
+            color: #7a7a7a;
+            font-size: 0.85em;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #9ab0c4 0%, #7a8fa5 100%);
+            color: #2c2c2c;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #8a9fb4 0%, #6a7f95 100%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .submit-btn:active {
+            background: linear-gradient(135deg, #7a8fa5 0%, #5a6f85 100%);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* 消息提示 */
+        .message {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95em;
+        }
+
+
+        .message.success {
+            background: linear-gradient(135deg, #d4e8d4 0%, #c8dcc8 100%);
+            color: #2e7d32;
+            border-left: 4px solid #66bb6a;
+        }
+
+        .message.error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f0c8cc 100%);
+            color: #c62828;
+            border-left: 4px solid #ef5350;
+        }
+
+        .message.show {
+            display: flex;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .notes-sidebar {
+                border-radius: 12px;
+            }
+
+            .right-content-section {
+                padding: 20px;
+                border-radius: 12px;
+            }
+
+            .form-textarea {
+                min-height: 150px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📝 memU 智能笔记</h1>
-            <p>基于语义搜索的智能笔记系统</p>
+    <!-- 顶部标题栏 -->
+    <div class="header">
+        <div class="header-content">
+            <h1>Smart Notes System</h1>
+            <div class="header-stats">
+                <div class="stat-item">
+                    Notes: <span class="stat-number" id="totalNotes">0</span>
+                </div>
+                <div class="stat-item">
+                    Search Results: <span class="stat-number" id="searchCount">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="main-container">
+        <!-- 左侧：笔记列表 -->
+        <div class="notes-sidebar">
+            <div class="sidebar-header">
+                <span>All Notes</span>
+                <button class="add-note-btn" onclick="showCreateNote()" title="创建新笔记">+</button>
+            </div>
+            
+            <div class="search-section">
+                <div class="search-box">
+                    <input
+                        type="text"
+                        id="searchQuery"
+                        class="search-input"
+                        placeholder="Search note content..."
+                        autocomplete="off"
+                    >
+                    <button onclick="searchNotes()" class="search-btn">Search</button>
+                </div>
+            </div>
+
+            <div class="notes-list" id="notesList">
+                <div class="empty-state">
+                    <div class="empty-state-icon"></div>
+                    <p>No notes yet</p>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Create your first note on the right!</p>
+                </div>
+            </div>
         </div>
 
-        <div class="main-content">
-            <!-- 添加笔记 -->
-            <div class="card">
-                <h2>✏️ 新建笔记</h2>
-                <div id="addMessage" class="message"></div>
-                <form id="addNoteForm">
-                    <div class="form-group">
-                        <label for="title">标题 *</label>
-                        <input type="text" id="title" required placeholder="输入笔记标题">
+        <!-- 右侧：内容区域 -->
+        <div class="right-content-section">
+            <!-- 创建笔记区域 -->
+            <div class="create-note-section active">
+                <div class="section-title">
+                    Create New Note
+                </div>
+
+                <div id="createMessage" class="message"></div>
+
+                <form id="createNoteForm">
+                <div class="form-group">
+                    <label class="form-label" for="noteTitle">
+                        Title *
+                    </label>
+                    <input
+                        type="text"
+                        id="noteTitle"
+                        class="form-input"
+                        placeholder="Enter note title..."
+                        required
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="noteContent">
+                        Content *
+                    </label>
+                    <textarea
+                        id="noteContent"
+                        class="form-textarea"
+                        placeholder="Enter note content..."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="noteTags">
+                        Tags <span class="optional">(Optional)</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="noteTags"
+                        class="form-input"
+                        placeholder="Leave empty for auto-generation, or enter manually, separated by commas"
+                        autocomplete="off"
+                    >
+                    <div class="form-hint">
+                        Leave empty and AI will auto-generate tags
                     </div>
-                    <div class="form-group">
-                        <label for="content">内容 *</label>
-                        <textarea id="content" required placeholder="输入笔记内容"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="tags">标签 <span style="color: #999; font-size: 12px;">（留空则自动生成 🤖）</span></label>
-                        <input type="text" id="tags" placeholder="留空自动生成，或手动输入，用逗号分隔">
-                    </div>
-                    <div class="form-group">
-                        <label for="category">分类</label>
-                        <input type="text" id="category" value="note" placeholder="笔记分类">
-                    </div>
-                    <button type="submit" class="btn">💾 保存笔记</button>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="noteCategory">
+                        Category
+                    </label>
+                    <input
+                        type="text"
+                        id="noteCategory"
+                        class="form-input"
+                        value="note"
+                        placeholder="Note category"
+                        autocomplete="off"
+                    >
+                </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        Save Note
+                    </button>
                 </form>
             </div>
 
-            <!-- 搜索笔记 -->
-            <div class="card">
-                <h2>🔍 搜索笔记</h2>
-                <div id="searchMessage" class="message"></div>
-                <div class="search-box">
-                    <input type="text" id="searchQuery" placeholder="输入搜索关键词...">
-                    <button onclick="searchNotes()" class="btn">搜索</button>
+            <!-- 笔记详情区域 -->
+            <div class="note-detail-section">
+                <div class="section-title">
+                    Note Details
                 </div>
-                <div id="searchResults" class="results"></div>
-            </div>
-        </div>
 
-        <!-- 统计信息 -->
-        <div class="stats">
-            <h3>📊 笔记统计</h3>
-            <div class="count" id="noteCount">-</div>
-            <p>条笔记</p>
+                <div id="noteDetailMessage" class="message"></div>
+
+                <!-- 查看模式 -->
+                <div id="viewMode">
+                    <div class="note-detail-content" id="noteDetailContent">
+                        <!-- 笔记内容将在这里显示 -->
+                    </div>
+                </div>
+
+                <!-- 编辑模式 -->
+                <div id="editMode" style="display: none;">
+                    <textarea 
+                        class="note-detail-textarea" 
+                        id="noteDetailTextarea"
+                        placeholder="编辑笔记内容..."
+                    ></textarea>
+                </div>
+
+                <div class="note-detail-meta" id="noteDetailMeta">
+                    <!-- 笔记元数据将在这里显示 -->
+                </div>
+
+                <div class="note-detail-actions">
+                    <button class="edit-mode-btn" id="editBtn" onclick="enterEditMode()">
+                        Edit
+                    </button>
+                    <button class="save-edit-btn" id="saveBtn" onclick="saveNoteEdit()" style="display: none;">
+                        Save
+                    </button>
+                    <button class="cancel-edit-btn" id="cancelBtn" onclick="cancelEdit()" style="display: none;">
+                        Cancel
+                    </button>
+                    <button class="delete-note-btn" id="deleteBtn" onclick="deleteNote()">
+                        Delete
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -300,96 +785,291 @@
         // API 基础地址
         const API_BASE = '';
 
+        // 当前选中的笔记
+        let selectedNoteIndex = -1;
+        let allNotesData = []; // 存储所有笔记数据
+        let isEditMode = false; // 是否处于编辑模式
+        let originalContent = ''; // 原始内容（用于取消编辑）
+
+        // 显示创建笔记界面
+        function showCreateNote() {
+            document.querySelector('.create-note-section').classList.add('active');
+            document.querySelector('.note-detail-section').classList.remove('active');
+
+            // 清除所有笔记卡片的选中状态
+            document.querySelectorAll('.note-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            selectedNoteIndex = -1;
+            isEditMode = false;
+        }
+
+        // 显示笔记详情
+        function showNoteDetail(note, index) {
+            document.querySelector('.create-note-section').classList.remove('active');
+            document.querySelector('.note-detail-section').classList.add('active');
+            
+            // 退出编辑模式
+            exitEditMode();
+            
+            // 显示笔记内容
+            const contentDiv = document.getElementById('noteDetailContent');
+            contentDiv.textContent = note.content;
+            originalContent = note.content;
+            
+            // 显示元数据
+            const metaDiv = document.getElementById('noteDetailMeta');
+            metaDiv.innerHTML = `
+                <div class="meta-item">
+                    <span class="meta-label">Category:</span>
+                    <span>${note.category}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">ID:</span>
+                    <span>${note.memory_id || 'N/A'}</span>
+                </div>
+                ${note.happened_at ? `
+                <div class="meta-item">
+                    <span class="meta-label">Time:</span>
+                    <span>${note.happened_at}</span>
+                </div>
+                ` : ''}
+            `;
+            
+            selectedNoteIndex = index;
+        }
+
+        // 进入编辑模式
+        function enterEditMode() {
+            if (selectedNoteIndex === -1) return;
+
+            isEditMode = true;
+            const note = allNotesData[selectedNoteIndex];
+            originalContent = note.content;
+
+            // 切换显示
+            document.getElementById('viewMode').style.display = 'none';
+            document.getElementById('editMode').style.display = 'block';
+
+            // 设置文本框内容
+            document.getElementById('noteDetailTextarea').value = note.content;
+
+            // 切换按钮
+            document.getElementById('editBtn').style.display = 'none';
+            document.getElementById('saveBtn').style.display = 'inline-flex';
+            document.getElementById('cancelBtn').style.display = 'inline-flex';
+            document.getElementById('deleteBtn').style.display = 'none';
+
+            // 聚焦到文本框
+            document.getElementById('noteDetailTextarea').focus();
+        }
+
+        // 退出编辑模式
+        function exitEditMode() {
+            isEditMode = false;
+            
+            // 切换显示
+            document.getElementById('viewMode').style.display = 'block';
+            document.getElementById('editMode').style.display = 'none';
+            
+            // 切换按钮
+            document.getElementById('editBtn').style.display = 'inline-flex';
+            document.getElementById('saveBtn').style.display = 'none';
+            document.getElementById('cancelBtn').style.display = 'none';
+            document.getElementById('deleteBtn').style.display = 'inline-flex';
+        }
+
+        // 取消编辑
+        function cancelEdit() {
+            exitEditMode();
+            // 恢复原始内容
+            document.getElementById('noteDetailContent').textContent = originalContent;
+        }
+
+        // 保存编辑
+        async function saveNoteEdit() {
+            if (selectedNoteIndex === -1) return;
+            
+            const newContent = document.getElementById('noteDetailTextarea').value.trim();
+            if (!newContent) {
+                showMessage('noteDetailMessage', 'Note content cannot be empty', 'error');
+                return;
+            }
+            
+            const note = allNotesData[selectedNoteIndex];
+            const saveBtn = document.getElementById('saveBtn');
+            const originalText = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<span class="loading-spinner"></span> Saving...';
+            saveBtn.disabled = true;
+
+            try {
+                // 调用 API 更新笔记（这里需要后端支持）
+                // 暂时只在前端更新
+                note.content = newContent;
+                allNotesData[selectedNoteIndex] = note;
+
+                // 更新显示
+                document.getElementById('noteDetailContent').textContent = newContent;
+                originalContent = newContent;
+
+                // 退出编辑模式
+                exitEditMode();
+
+                showMessage('noteDetailMessage', 'Note updated successfully (Note: Currently frontend-only, will restore on refresh)', 'success');
+                
+                // TODO: 实际应该调用后端 API 更新
+                // const response = await fetch(`${API_BASE}/api/notes/${note.memory_id}`, {
+                //     method: 'PUT',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ content: newContent }),
+                // });
+                
+            } catch (error) {
+                showMessage('noteDetailMessage', `Save failed: ${error.message}`, 'error');
+            } finally {
+                saveBtn.innerHTML = originalText;
+                saveBtn.disabled = false;
+            }
+        }
+
+        // 删除笔记
+        async function deleteNote() {
+            if (selectedNoteIndex === -1) return;
+            
+            const note = allNotesData[selectedNoteIndex];
+            
+            if (!confirm(`Are you sure you want to delete this note?\n\n${note.content.substring(0, 100)}...`)) {
+                return;
+            }
+            
+            const deleteBtn = document.getElementById('deleteBtn');
+            const originalText = deleteBtn.innerHTML;
+            deleteBtn.innerHTML = '<span class="loading-spinner"></span> Deleting...';
+            deleteBtn.disabled = true;
+            
+            try {
+                // 调用 API 删除笔记（这里需要后端支持）
+                // 暂时只在前端删除
+                allNotesData.splice(selectedNoteIndex, 1);
+
+                // 重新加载笔记列表
+                await loadAllNotes();
+
+                // 切换回创建界面
+                showCreateNote();
+
+                showMessage('createMessage', 'Note deleted successfully (Note: Currently frontend-only, will restore on refresh)', 'success');
+                
+                // TODO: 实际应该调用后端 API 删除
+                // const response = await fetch(`${API_BASE}/api/notes/${note.memory_id}`, {
+                //     method: 'DELETE',
+                // });
+                
+            } catch (error) {
+                showMessage('noteDetailMessage', `Delete failed: ${error.message}`, 'error');
+            } finally {
+                deleteBtn.innerHTML = originalText;
+                deleteBtn.disabled = false;
+            }
+        }
+
         // 显示消息
         function showMessage(elementId, message, type) {
             const element = document.getElementById(elementId);
-            element.textContent = message;
+            element.innerHTML = `<span>${type === 'success' ? '✅' : '❌'}</span> ${message}`;
             element.className = `message ${type} show`;
             setTimeout(() => {
                 element.className = 'message';
             }, 5000);
         }
 
-        // 添加笔记
-        document.getElementById('addNoteForm').addEventListener('submit', async (e) => {
+        // 创建笔记
+        document.getElementById('createNoteForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const title = document.getElementById('title').value;
-            const content = document.getElementById('content').value;
-            const tagsStr = document.getElementById('tags').value;
-            const category = document.getElementById('category').value || 'note';
+            const title = document.getElementById('noteTitle').value.trim();
+            const content = document.getElementById('noteContent').value.trim();
+            const tagsStr = document.getElementById('noteTags').value.trim();
+            const category = document.getElementById('noteCategory').value.trim() || 'note';
             
-            // 如果标签为空，传 null 让后端自动生成
             const tags = tagsStr ? tagsStr.split(',').map(t => t.trim()).filter(t => t) : null;
             
-            // 显示加载提示
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = tags ? '💾 保存中...' : '🤖 AI 生成标签中...';
+            const submitBtn = document.getElementById('submitBtn');
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.innerHTML = tags 
+                ? '<span class="loading-spinner"></span> 保存中...' 
+                : '<span class="loading-spinner"></span> AI 生成标签中...';
             submitBtn.disabled = true;
             
             try {
                 const response = await fetch(`${API_BASE}/api/notes`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        title,
-                        content,
-                        tags,
-                        category,
-                    }),
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title, content, tags, category }),
                 });
                 
                 const data = await response.json();
                 
                 if (data.success) {
                     const message = data.auto_tags 
-                        ? `✅ ${data.message}（AI 自动生成标签: ${data.auto_tags.join(', ')}）`
-                        : `✅ ${data.message}`;
-                    showMessage('addMessage', message, 'success');
-                    document.getElementById('addNoteForm').reset();
-                    document.getElementById('category').value = 'note';
+                        ? `笔记保存成功！AI 生成的标签: ${data.auto_tags.join(', ')}`
+                        : '笔记保存成功！';
+                    showMessage('createMessage', message, 'success');
                     
-                    // 刷新搜索结果
+                    // 清空表单
+                    document.getElementById('createNoteForm').reset();
+                    document.getElementById('noteCategory').value = 'note';
+                    
+                    // 刷新笔记列表
                     setTimeout(() => {
-                        if (document.getElementById('searchQuery').value) {
+                        const query = document.getElementById('searchQuery').value;
+                        if (query) {
                             searchNotes();
+                        } else {
+                            loadAllNotes();
                         }
                     }, 1000);
                 } else {
-                    showMessage('addMessage', `❌ 保存失败: ${data.message}`, 'error');
+                    showMessage('createMessage', `保存失败: ${data.message}`, 'error');
                 }
             } catch (error) {
-                showMessage('addMessage', `❌ 保存失败: ${error.message}`, 'error');
+                showMessage('createMessage', `保存失败: ${error.message}`, 'error');
             } finally {
-                submitBtn.textContent = originalText;
+                submitBtn.innerHTML = originalHTML;
                 submitBtn.disabled = false;
             }
         });
 
         // 搜索笔记
         async function searchNotes() {
-            const query = document.getElementById('searchQuery').value;
-            const resultsDiv = document.getElementById('searchResults');
+            const query = document.getElementById('searchQuery').value.trim();
+            const notesList = document.getElementById('notesList');
             
-            if (!query.trim()) {
-                resultsDiv.innerHTML = '<div class="empty-state">💡 请输入搜索关键词</div>';
+            if (!query) {
+                notesList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">💡</div>
+                        <p>请输入搜索关键词</p>
+                    </div>
+                `;
+                document.getElementById('searchCount').textContent = '-';
                 return;
             }
             
-            resultsDiv.innerHTML = '<div class="loading">🔄 搜索中...</div>';
+            notesList.innerHTML = `
+                <div class="empty-state">
+                    <div class="loading-spinner" style="width: 40px; height: 40px; border-width: 4px;"></div>
+                    <p style="margin-top: 15px;">搜索中...</p>
+                </div>
+            `;
             
             try {
                 const response = await fetch(`${API_BASE}/api/notes/search`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         query,
-                        top_k: 10,
+                        top_k: 50,
                         min_similarity: 0.2,
                     }),
                 });
@@ -397,31 +1077,58 @@
                 const data = await response.json();
                 
                 if (data.success && data.results.length > 0) {
-                    resultsDiv.innerHTML = data.results.map(note => `
-                        <div class="note-item">
-                            <div>
-                                <span class="note-similarity">相似度: ${(note.similarity_score * 100).toFixed(1)}%</span>
-                                <span class="note-category">${note.category}</span>
+                    // 保存搜索结果数据
+                    allNotesData = data.results;
+                    
+                    notesList.innerHTML = data.results.map((note, index) => `
+                        <div class="note-card" onclick="selectNote(${index})">
+                            <div class="note-header">
+                                <div>
+                                    <span class="note-category">${note.category}</span>
+                                </div>
                             </div>
-                            <div class="note-content">${note.content}</div>
+                            <div class="note-content-preview">${note.content}</div>
                         </div>
                     `).join('');
                     
-                    showMessage('searchMessage', `✅ 找到 ${data.count} 条相关笔记`, 'success');
-                    updateNoteCount(data.count);
+                    document.getElementById('searchCount').textContent = data.count;
+                    document.getElementById('totalNotes').textContent = data.count;
                 } else {
-                    resultsDiv.innerHTML = '<div class="empty-state">📭 没有找到相关笔记</div>';
-                    showMessage('searchMessage', '📭 没有找到相关笔记', 'error');
+                    notesList.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon"></div>
+                            <p>No related notes found</p>
+                            <p style="font-size: 0.9em; margin-top: 5px;">Try other keywords</p>
+                        </div>
+                    `;
+                    document.getElementById('searchCount').textContent = '0';
                 }
             } catch (error) {
-                resultsDiv.innerHTML = '<div class="empty-state">❌ 搜索失败</div>';
-                showMessage('searchMessage', `❌ 搜索失败: ${error.message}`, 'error');
+                notesList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon"></div>
+                        <p>Search failed</p>
+                        <p style="font-size: 0.9em; margin-top: 5px;">${error.message}</p>
+                    </div>
+                `;
             }
         }
 
-        // 更新笔记数量
-        function updateNoteCount(count) {
-            document.getElementById('noteCount').textContent = count;
+        // 选择笔记
+        function selectNote(index) {
+            const cards = document.querySelectorAll('.note-card');
+            cards.forEach((card, i) => {
+                if (i === index) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+            
+            // 显示笔记详情
+            if (allNotesData[index]) {
+                showNoteDetail(allNotesData[index], index);
+            }
         }
 
         // 回车搜索
@@ -431,15 +1138,77 @@
             }
         });
 
-        // 页面加载时检查健康状态
+        // 加载所有笔记
+        async function loadAllNotes() {
+            const notesList = document.getElementById('notesList');
+            
+            notesList.innerHTML = `
+                <div class="empty-state">
+                    <div class="loading-spinner" style="width: 40px; height: 40px; border-width: 4px;"></div>
+                    <p style="margin-top: 15px;">加载笔记中...</p>
+                </div>
+            `;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/notes`);
+                const data = await response.json();
+                
+                if (data.success && data.results.length > 0) {
+                    // 保存笔记数据
+                    allNotesData = data.results;
+                    
+                    notesList.innerHTML = data.results.map((note, index) => `
+                        <div class="note-card" onclick="selectNote(${index})">
+                            <div class="note-header">
+                                <div>
+                                    <span class="note-category">${note.category}</span>
+                                </div>
+                            </div>
+                            <div class="note-content-preview">${note.content}</div>
+                        </div>
+                    `).join('');
+                    
+                    document.getElementById('totalNotes').textContent = data.count;
+                    document.getElementById('searchCount').textContent = data.count;
+                    console.log(`✅ Loaded ${data.count} notes`);
+                } else {
+                    notesList.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon"></div>
+                            <p>No notes yet</p>
+                            <p style="font-size: 0.9em; margin-top: 5px;">Create your first note on the right!</p>
+                        </div>
+                    `;
+                    document.getElementById('totalNotes').textContent = '0';
+                    document.getElementById('searchCount').textContent = '-';
+                }
+            } catch (error) {
+                notesList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon"></div>
+                        <p>Failed to load</p>
+                        <p style="font-size: 0.9em; margin-top: 5px;">${error.message}</p>
+                    </div>
+                `;
+                console.error('❌ Failed to load notes:', error);
+            }
+        }
+
+        // 页面加载时检查服务器状态并加载所有笔记
         window.addEventListener('load', async () => {
             try {
                 const response = await fetch(`${API_BASE}/api/health`);
                 const data = await response.json();
-                console.log('✅ 服务器状态:', data.message);
+                console.log('✅ Server status:', data.message);
+
+                // 确保初始状态下创建笔记区域显示
+                showCreateNote();
+
+                // 加载所有笔记
+                await loadAllNotes();
             } catch (error) {
-                console.error('❌ 无法连接到服务器:', error);
-                showMessage('searchMessage', '⚠️ 无法连接到服务器，请确保后端服务正在运行', 'error');
+                console.error('❌ Cannot connect to server:', error);
+                showMessage('createMessage', '⚠️ Cannot connect to server, please ensure backend service is running', 'error');
             }
         });
     </script>

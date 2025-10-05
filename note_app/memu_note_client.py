@@ -1,6 +1,5 @@
-"""
-memU 笔记客户端
-用于将笔记直接存储到 memU 记忆库中
+"""memU Note Client
+For storing notes directly into memU memory database
 """
 
 import httpx
@@ -10,27 +9,27 @@ import json
 
 
 class MemuNoteClient:
-    """memU 笔记客户端，用于存储和管理笔记"""
+    """memU Note Client for storing and managing notes"""
 
     def __init__(
         self,
         base_url: str = "http://127.0.0.1:8000",
         user_id: str = "note_user",
-        user_name: str = "笔记用户",
+        user_name: str = "Note User",
         agent_id: str = "note_agent",
-        agent_name: str = "笔记助手",
+        agent_name: str = "Note Assistant",
         timeout: float = 30.0,
     ):
         """
-        初始化 memU 笔记客户端
+        Initialize memU Note Client
 
         Args:
-            base_url: memU API 的基础 URL
-            user_id: 用户标识
-            user_name: 用户名称
-            agent_id: 智能体标识
-            agent_name: 智能体名称
-            timeout: 请求超时时间（秒）
+            base_url: Base URL for memU API
+            user_id: User identifier
+            user_name: User name
+            agent_id: Agent identifier
+            agent_name: Agent name
+            timeout: Request timeout in seconds
         """
         self.base_url = base_url.rstrip("/")
         self.user_id = user_id
@@ -41,66 +40,66 @@ class MemuNoteClient:
 
     def _generate_tags_with_llm(self, title: str, content: str) -> List[str]:
         """
-        使用 LLM 自动生成标签
+        Automatically generate tags using LLM
 
         Args:
-            title: 笔记标题
-            content: 笔记内容
+            title: Note title
+            content: Note content
 
         Returns:
-            生成的标签列表
+            Generated tag list
         """
         try:
-            # 构建提示词
-            prompt = f"""请为以下笔记生成3-5个相关的标签关键词。
+            # Build prompt
+            prompt = f"""Please generate 3-5 relevant tag keywords for the following note.
 
-笔记标题：{title}
-笔记内容：{content}
+Note Title: {title}
+Note Content: {content}
 
-要求：
-1. 标签应该简洁明了，2-4个字
-2. 标签应该涵盖主题、领域、类型等维度
-3. 只返回标签，用逗号分隔，不要其他内容
+Requirements:
+1. Tags should be concise and clear, 2-4 characters
+2. Tags should cover dimensions like topic, field, type, etc.
+3. Only return tags, separated by commas, no other content
 
-标签："""
+Tags: """
 
-            # 调用 LLM（通过 memU 的 API）
-            # 这里我们使用一个简单的启发式方法生成标签
-            # 实际上 memU 会在后台用 LLM 处理，所以我们让它自动提取
+            # Call LLM (through memU's API)
+            # Here we use a simple heuristic method to generate tags
+            # Actually memU will process with LLM in the background, so we let it auto-extract
             
-            # 从标题和内容中提取关键词作为临时方案
+            # Extract keywords from title and content as temporary solution
             import re
             
-            # 合并标题和内容
+            # Merge title and content
             text = f"{title} {content}"
             
-            # 简单的关键词提取（实际上 memU 会做更好的处理）
+            # Simple keyword extraction (actually memU will do better processing)
             keywords = []
             
-            # 常见技术关键词
+            # Common technical keywords
             tech_keywords = [
-                'Python', 'Java', 'JavaScript', 'AI', '人工智能', '机器学习', 
-                '深度学习', '神经网络', '算法', '数据结构', '编程', '开发',
-                '前端', '后端', '数据库', 'Web', '移动开发', '云计算',
-                '学习', '工作', '项目', '技术', '笔记', '总结', '教程',
-                '框架', '库', '工具', '方法', '实践', '经验'
+                'Python', 'Java', 'JavaScript', 'AI', 'Artificial Intelligence', 'Machine Learning', 
+                'Deep Learning', 'Neural Network', 'Algorithm', 'Data Structure', 'Programming', 'Development',
+                'Frontend', 'Backend', 'Database', 'Web', 'Mobile Development', 'Cloud Computing',
+                'Learning', 'Work', 'Project', 'Technology', 'Note', 'Summary', 'Tutorial',
+                'Framework', 'Library', 'Tool', 'Method', 'Practice', 'Experience'
             ]
             
             for keyword in tech_keywords:
-                if keyword in text:
+                if keyword.lower() in text.lower():
                     keywords.append(keyword)
                     if len(keywords) >= 5:
                         break
             
-            # 如果没有找到关键词，使用默认标签
+            # If no keywords found, use default tags
             if not keywords:
-                keywords = ['笔记', '学习']
+                keywords = ['Note', 'Learning']
             
-            return keywords[:5]  # 最多返回5个标签
+            return keywords[:5]  # Return at most 5 tags
             
         except Exception as e:
-            print(f"⚠️  自动生成标签失败，使用默认标签: {e}")
-            return ['笔记', '学习']
+            print(f"⚠️  Auto tag generation failed, using default tags: {e}")
+            return ['Note', 'Learning']
 
     def save_note(
         self,
@@ -111,34 +110,34 @@ class MemuNoteClient:
         auto_tags: bool = True,
     ) -> Dict[str, Any]:
         """
-        保存笔记到 memU
+        Save note to memU
 
         Args:
-            title: 笔记标题
-            content: 笔记内容
-            tags: 标签列表（如果为 None 且 auto_tags=True，则自动生成）
-            category: 笔记分类
-            auto_tags: 是否自动生成标签
+            title: Note title
+            content: Note content
+            tags: Tag list (if None and auto_tags=True, auto-generate)
+            category: Note category
+            auto_tags: Whether to auto-generate tags
 
         Returns:
-            API 响应结果
+            API response result
         """
-        # 如果没有提供标签且启用自动标签，则自动生成
+        # If no tags provided and auto tags enabled, auto-generate
         if not tags and auto_tags:
-            print("🤖 正在使用 AI 自动生成标签...")
+            print("🤖 Using AI to auto-generate tags...")
             tags = self._generate_tags_with_llm(title, content)
-            print(f"✨ 自动生成的标签: {', '.join(tags)}")
+            print(f"✨ Auto-generated tags: {', '.join(tags)}")
         
-        # 构建对话格式的笔记
+        # Build conversation format note
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
-        # 构建笔记消息
-        note_message = f"[笔记] {title}\n\n{content}"
+        # Build note message
+        note_message = f"[Note] {title}\n\n{content}"
         if tags:
-            note_message += f"\n\n标签: {', '.join(tags)}"
-        note_message += f"\n\n记录时间: {timestamp}"
+            note_message += f"\n\nTags: {', '.join(tags)}"
+        note_message += f"\n\nRecorded at: {timestamp}"
 
-        # 构建对话数据
+        # Build conversation data
         conversation_data = {
             "user_id": self.user_id,
             "user_name": self.user_name,
@@ -159,7 +158,7 @@ class MemuNoteClient:
             },
         }
 
-        # 发送到 memU
+        # Send to memU
         try:
             with httpx.Client(base_url=self.base_url, timeout=self.timeout) as client:
                 response = client.post(
@@ -168,10 +167,10 @@ class MemuNoteClient:
                 )
                 response.raise_for_status()
                 result = response.json()
-                print(f"✅ 笔记已保存到 memU: {title}")
+                print(f"✅ Note saved to memU: {title}")
                 return result
         except httpx.HTTPError as e:
-            print(f"❌ 保存笔记失败: {e}")
+            print(f"❌ Failed to save note: {e}")
             raise
 
     def search_notes(
@@ -181,15 +180,15 @@ class MemuNoteClient:
         min_similarity: float = 0.3,
     ) -> List[Dict[str, Any]]:
         """
-        搜索笔记
+        Search notes
 
         Args:
-            query: 搜索查询
-            top_k: 返回结果数量
-            min_similarity: 最小相似度阈值
+            query: Search query
+            top_k: Number of results to return
+            min_similarity: Minimum similarity threshold
 
         Returns:
-            搜索结果列表
+            Search result list
         """
         search_data = {
             "user_id": self.user_id,
@@ -223,40 +222,87 @@ class MemuNoteClient:
                         "metadata": memory.get("metadata", {}),
                     })
                 
-                print(f"🔍 找到 {len(notes)} 条相关笔记")
+                print(f"🔍 Found {len(notes)} related notes")
                 return notes
                 
         except httpx.HTTPError as e:
-            print(f"❌ 搜索笔记失败: {e}")
+            print(f"❌ Failed to search notes: {e}")
             raise
 
+    def get_all_memories(self) -> List[Dict[str, Any]]:
+        """
+        Get all memories from memU database via API
+        
+        Returns:
+            All memory list
+        """
+        try:
+            with httpx.Client(base_url=self.base_url, timeout=self.timeout) as client:
+                # 调用 memU API 获取默认分类
+                response = client.post(
+                    "/api/v1/memory/retrieve/default-categories",
+                    json={
+                        "user_id": self.user_id,
+                        "agent_id": self.agent_id,
+                        "include_inactive": False,
+                    },
+                )
+                response.raise_for_status()
+                result = response.json()
+                
+                # 提取所有记忆
+                all_memories = []
+                categories = result.get("categories", [])
+                
+                for category_info in categories:
+                    category_name = category_info.get("name", "unknown")
+                    memories = category_info.get("memories", [])
+                    
+                    for memory in memories:
+                        all_memories.append({
+                            "memory_id": memory.get("memory_id", ""),
+                            "category": category_name,
+                            "content": memory.get("content", ""),
+                            "happened_at": memory.get("happened_at", ""),
+                            "metadata": memory.get("metadata", {}),
+                        })
+                
+                print(f"📚 从数据库加载了 {len(all_memories)} 条记忆")
+                return all_memories
+                
+        except httpx.HTTPError as e:
+            print(f"❌ 获取记忆失败: {e}")
+            # 如果 API 调用失败，回退到文件读取方法
+            print("💡 尝试从文件系统读取...")
+            return self.list_all_memories()
+    
     def list_all_memories(self) -> List[Dict[str, Any]]:
         """
-        列出所有记忆（笔记）
-        直接读取 memU 存储的 markdown 文件
+        List all memories (notes)
+        Directly read markdown files stored by memU
 
         Returns:
-            所有记忆列表
+            All memory list
         """
         import re
         from pathlib import Path
         
-        # memU 存储路径
+        # memU storage path
         memory_base = Path("../memU/memory_data") / self.agent_id / self.user_id
         
-        # 如果路径不存在，尝试绝对路径
+        # If path doesn't exist, try absolute path
         if not memory_base.exists():
             memory_base = Path("/Users/yangchengxuan/Desktop/PROJECTS/Live2Document_4/memU/memory_data") / self.agent_id / self.user_id
         
         if not memory_base.exists():
-            print("📭 还没有任何笔记")
-            print(f"💡 提示：笔记存储路径 {memory_base} 不存在")
+            print("📭 No notes yet")
+            print(f"💡 Tip: Note storage path {memory_base} does not exist")
             return []
         
         all_memories = []
         memory_count = 0
         
-        # 读取所有 .md 文件
+        # Read all .md files
         for md_file in memory_base.glob("*.md"):
             category = md_file.stem
             
@@ -264,35 +310,35 @@ class MemuNoteClient:
                 with open(md_file, 'r', encoding='utf-8') as f:
                     content = f.read()
                 
-                # 解析每一行记忆（格式：[id][mentioned at date] content []）
+                # Parse each line of memory (format: [id][mentioned at date] content [])
                 lines = content.strip().split('\n')
                 for line in lines:
                     if not line.strip():
                         continue
                     
-                    # 提取记忆 ID 和内容
+                    # Extract memory ID and content
                     match = re.match(r'\[([^\]]+)\]\[mentioned at ([^\]]+)\]\s*(.+?)\s*\[\]', line)
                     if match:
                         memory_id = match.group(1)
                         date = match.group(2)
                         text = match.group(3)
                         
-                        # 提取标签（如果有）
+                        # Extract tags (if any)
                         tags = []
-                        # 尝试多种标签格式
+                        # Try multiple tag formats
                         tag_patterns = [
-                            r'标签[：:]\s*([^。\n]+)',
-                            r'标记主题标签为\s*([^。\n]+)',
-                            r'打上标签\s*([^。\n]+)',
-                            r'主题标签[：:]\s*([^。\n]+)',
+                            r'Tags[：:]\s*([^。\n]+)',
+                            r'Tagged with\s*([^。\n]+)',
+                            r'Tag with\s*([^。\n]+)',
+                            r'Topic tags[：:]\s*([^。\n]+)',
                         ]
                         
                         for pattern in tag_patterns:
                             tag_match = re.search(pattern, text)
                             if tag_match:
                                 tags_str = tag_match.group(1)
-                                # 分割标签（支持多种分隔符）
-                                tags = [t.strip() for t in re.split(r'[,，、和与及]', tags_str) if t.strip()]
+                                # Split tags (support multiple separators)
+                                tags = [t.strip() for t in re.split(r'[,，、and&]', tags_str) if t.strip()]
                                 break
                         
                         all_memories.append({
@@ -305,39 +351,39 @@ class MemuNoteClient:
                         memory_count += 1
             
             except Exception as e:
-                print(f"⚠️  读取文件 {md_file} 失败: {e}")
+                print(f"⚠️  Failed to read file {md_file}: {e}")
                 continue
         
         if memory_count == 0:
-            print("📭 还没有任何笔记")
+            print("📭 No notes yet")
         else:
-            print(f"📚 共有 {memory_count} 条记忆")
+            print(f"📚 Total {memory_count} memories")
         
         return all_memories
 
 
 def main():
-    """命令行测试"""
+    """Command line test"""
     client = MemuNoteClient()
     
-    # 测试保存笔记
-    print("\n📝 测试保存笔记...")
+    # Test saving note
+    print("\n📝 Testing save note...")
     client.save_note(
-        title="Python 学习笔记",
-        content="今天学习了 Python 的装饰器。装饰器是一种设计模式，可以在不修改原函数的情况下增加额外功能。",
-        tags=["Python", "编程", "学习"],
-        category="技术笔记",
+        title="Python Learning Notes",
+        content="Today I learned about Python decorators. Decorators are a design pattern that can add extra functionality without modifying the original function.",
+        tags=["Python", "Programming", "Learning"],
+        category="Technical Notes",
     )
     
-    # 测试搜索笔记
-    print("\n🔍 测试搜索笔记...")
-    results = client.search_notes("Python 装饰器")
+    # Test searching notes
+    print("\n🔍 Testing search notes...")
+    results = client.search_notes("Python decorator")
     
     for i, note in enumerate(results, 1):
-        print(f"\n--- 笔记 {i} ---")
-        print(f"相似度: {note['similarity_score']:.2f}")
-        print(f"分类: {note['category']}")
-        print(f"内容: {note['content'][:100]}...")
+        print(f"\n--- Note {i} ---")
+        print(f"Similarity: {note['similarity_score']:.2f}")
+        print(f"Category: {note['category']}")
+        print(f"Content: {note['content'][:100]}...")
 
 
 if __name__ == "__main__":
