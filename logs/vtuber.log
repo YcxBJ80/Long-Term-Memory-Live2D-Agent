@@ -1,571 +1,120 @@
 [32m[INFO][0m [1mRunning in standard mode. For detailed debug logs, use: uv run run_server.py --verbose[0m
-[32m2025-10-05 13:15:35[0m | [1mINFO    [0m | [36m__main__[0m:[36mrun[0m:[36m122[0m | Open-LLM-VTuber, version v1.2.1
-[32m2025-10-05 13:15:35[0m | [1mINFO    [0m | [36mupgrade_codes.config_sync[0m:[36mbackup_user_config[0m:[36m100[0m | 正在备份 conf.yaml 到 conf.yaml.backup
-[32m2025-10-05 13:15:35[0m | [1mINFO    [0m | [36m__main__[0m:[36mrun[0m:[36m149[0m | Initializing server context...
-[32m2025-10-05 13:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_memu_manager[0m:[36m340[0m | memU integration enabled (base_url=%s, user=%s, agent=%s)
-[32m2025-10-05 13:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36minit_live2d[0m:[36m437[0m | Initializing Live2D: mao_pro
-[32m2025-10-05 13:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.live2d_model[0m:[36m_lookup_model_info[0m:[36m142[0m | Model Information Loaded.
-[32m2025-10-05 13:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36minit_asr[0m:[36m447[0m | Initializing ASR: sherpa_onnx_asr
-[32m2025-10-05 13:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.asr.sherpa_onnx_asr[0m:[36m__init__[0m:[36m81[0m | Sherpa-Onnx-ASR: Using cpu for inference
-[32m2025-10-05 13:15:36[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36minit_tts[0m:[36m459[0m | Initializing TTS: edge_tts
-[32m2025-10-05 13:15:36[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36minit_vad[0m:[36m471[0m | VAD is disabled.
-[32m2025-10-05 13:15:36[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36mload_from_config[0m:[36m303[0m | Initializing shared ServerRegistry within load_from_config.
-[32m2025-10-05 13:15:36[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36mload_from_config[0m:[36m307[0m | Initializing shared ToolAdapter within load_from_config.
-[32m2025-10-05 13:15:36[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
-[32m2025-10-05 13:15:36[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
-[32m2025-10-05 13:15:36[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:15:36[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-[32m2025-10-05 13:15:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 13:15:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 13:15:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 13:15:37] INFO     Processing request of type            server.py:664
+[32m2025-10-09 18:19:24[0m | [1mINFO    [0m | [36m__main__[0m:[36mrun[0m:[36m122[0m | Open-LLM-VTuber, version v1.2.1
+[32m2025-10-09 18:19:24[0m | [1mINFO    [0m | [36mupgrade_codes.config_sync[0m:[36mbackup_user_config[0m:[36m100[0m | Backing up conf.yaml to conf.yaml.backup
+[32m2025-10-09 18:19:24[0m | [1mINFO    [0m | [36m__main__[0m:[36mrun[0m:[36m149[0m | Initializing server context...
+[32m2025-10-09 18:19:24[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_memu_manager[0m:[36m340[0m | memU integration enabled (base_url=%s, user=%s, agent=%s)
+[32m2025-10-09 18:19:24[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36minit_live2d[0m:[36m437[0m | Initializing Live2D: mao_pro
+[32m2025-10-09 18:19:24[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.live2d_model[0m:[36m_lookup_model_info[0m:[36m142[0m | Model Information Loaded.
+[32m2025-10-09 18:19:24[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36minit_asr[0m:[36m447[0m | Initializing ASR: sherpa_onnx_asr
+[32m2025-10-09 18:19:24[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.asr.sherpa_onnx_asr[0m:[36m__init__[0m:[36m81[0m | Sherpa-Onnx-ASR: Using cpu for inference
+[32m2025-10-09 18:19:26[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36minit_tts[0m:[36m459[0m | Initializing TTS: edge_tts
+[32m2025-10-09 18:19:26[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36minit_vad[0m:[36m471[0m | VAD is disabled.
+[32m2025-10-09 18:19:26[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36mload_from_config[0m:[36m303[0m | Initializing shared ServerRegistry within load_from_config.
+[32m2025-10-09 18:19:26[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36mload_from_config[0m:[36m307[0m | Initializing shared ToolAdapter within load_from_config.
+[32m2025-10-09 18:19:26[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
+[32m2025-10-09 18:19:26[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
+[32m2025-10-09 18:19:26[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
+[32m2025-10-09 18:19:26[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
+Downloading pydantic-core (1.8MiB)
+ Downloading pydantic-core
+Installed 29 packages in 43ms
+[32m2025-10-09 18:19:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
+[32m2025-10-09 18:19:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
+Installed 35 packages in 30ms
+[32m2025-10-09 18:19:30[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
+[10/09/25 18:19:30] INFO     Processing request of type            server.py:664
                              ListToolsRequest                                   
-[32m2025-10-05 13:15:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 13:15:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 13:15:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
-[32m2025-10-05 13:15:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
-[32m2025-10-05 13:15:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
-[32m2025-10-05 13:15:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:15:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 13:15:38] INFO     Processing request of type            server.py:664
+[32m2025-10-09 18:19:30[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
+[32m2025-10-09 18:19:30[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
+[32m2025-10-09 18:19:30[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
+[32m2025-10-09 18:19:30[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
+[32m2025-10-09 18:19:30[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
+[32m2025-10-09 18:19:30[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
+[32m2025-10-09 18:19:30[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
+[32m2025-10-09 18:19:30[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
+[32m2025-10-09 18:19:30[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
+[10/09/25 18:19:31] INFO     Processing request of type            server.py:664
                              ListToolsRequest                                   
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36minit_agent[0m:[36m488[0m | Initializing Agent: basic_memory_agent
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agent_factory[0m:[36mcreate_agent[0m:[36m37[0m | Initializing agent: basic_memory_agent
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.stateless_llm_factory[0m:[36mcreate_llm[0m:[36m23[0m | Initializing LLM: lmstudio_llm
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.stateless_llm.openai_compatible_llm[0m:[36m__init__[0m:[36m56[0m | Initialized AsyncLLM with the parameters: http://127.0.0.1:1234/v1, qwen3-30b-a3b-2507
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36m__init__[0m:[36m112[0m | BasicMemoryAgent initialized.
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36m__main__[0m:[36mrun[0m:[36m152[0m | Server context initialized successfully.
-[32m2025-10-05 13:15:38[0m | [1mINFO    [0m | [36m__main__[0m:[36mrun[0m:[36m158[0m | Starting server on localhost:12393
-INFO:     Started server process [83258]
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36minit_agent[0m:[36m488[0m | Initializing Agent: basic_memory_agent
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agent_factory[0m:[36mcreate_agent[0m:[36m37[0m | Initializing agent: basic_memory_agent
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.stateless_llm_factory[0m:[36mcreate_llm[0m:[36m23[0m | Initializing LLM: lmstudio_llm
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.stateless_llm.openai_compatible_llm[0m:[36m__init__[0m:[36m56[0m | Initialized AsyncLLM with the parameters: http://127.0.0.1:1234/v1, qwen3-30b-a3b-2507
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36m__init__[0m:[36m112[0m | BasicMemoryAgent initialized.
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36m__main__[0m:[36mrun[0m:[36m152[0m | Server context initialized successfully.
+[32m2025-10-09 18:19:31[0m | [1mINFO    [0m | [36m__main__[0m:[36mrun[0m:[36m158[0m | Starting server on localhost:12393
+INFO:     Started server process [8337]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://localhost:12393 (Press CTRL+C to quit)
-INFO:     ::1:55379 - "GET / HTTP/1.1" 200 OK
-INFO:     ::1:55387 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     ::1:55387 - "GET /assets/main-CKgUHFa9.js HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:55389 - "WebSocket /client-ws" [accepted]
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
+INFO:     ::1:51020 - "GET / HTTP/1.1" 200 OK
+INFO:     ::1:51020 - "GET /assets/main-CKgUHFa9.js HTTP/1.1" 200 OK
+INFO:     ::1:51021 - "GET /assets/main-QEkl09-0.css HTTP/1.1" 200 OK
+INFO:     ::1:51020 - "GET /libs/live2dcubismcore.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51024 - "GET /bg/ceiling-window-room-night.jpeg HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51025 - "WebSocket /client-ws" [accepted]
+[32m2025-10-09 18:19:43[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
+[32m2025-10-09 18:19:43[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
+[32m2025-10-09 18:19:43[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
+[32m2025-10-09 18:19:43[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
 INFO:     connection open
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-INFO:     ::1:55387 - "GET /undefined/undefined.model3.json HTTP/1.1" 404 Not Found
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 13:15:53] INFO     Processing request of type            server.py:664
+INFO:     ::1:51020 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     ::1:51020 - "GET /undefined/undefined.model3.json HTTP/1.1" 404 Not Found
+[32m2025-10-09 18:19:44[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
+[32m2025-10-09 18:19:44[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
+[32m2025-10-09 18:19:44[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
+[10/09/25 18:19:44] INFO     Processing request of type            server.py:664
                              ListToolsRequest                                   
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 13:15:53[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 13:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 13:15:54] INFO     Processing request of type            server.py:664
+[32m2025-10-09 18:19:44[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
+[10/09/25 18:19:45] INFO     Processing request of type            server.py:664
                              ListToolsRequest                                   
-[32m2025-10-05 13:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 13:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 13:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
-[32m2025-10-05 13:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
-[32m2025-10-05 13:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
-[32m2025-10-05 13:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
-[32m2025-10-05 13:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
-[32m2025-10-05 13:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_new_connection[0m:[36m126[0m | Connection established for client dcf68541-38bf-4793-ac52-d4c5bf2ab5c0
-[32m2025-10-05 13:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.chat_history_manager[0m:[36mget_history_list[0m:[36m297[0m | Removed empty history file: 2025-10-05_13-08-14_99bf5fe5fd3e481c99fdea80e963469e
-[32m2025-10-05 13:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mset_memory_from_history[0m:[36m193[0m | Loaded 0 messages from history.
-[32m2025-10-05 13:15:56[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🌳 started!
-[32m2025-10-05 13:15:56[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.memory.memu_manager[0m:[36mget_client[0m:[36m40[0m | Initializing memU client ✨
-[32m2025-10-05 13:15:56[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: hi
-[32m2025-10-05 13:16:03[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36msend_conversation_end_signal[0m:[36m212[0m | 😎👍✅ Conversation Chain 😊 completed!
-[32m2025-10-05 13:16:03[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m173[0m | AI response: Hello![neutral] I'm glad to see you.How are you feeling today?
-INFO:     ::1:55388 - "GET / HTTP/1.1" 304 Not Modified
-[32m2025-10-05 13:16:07[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_websocket_communication[0m:[36m234[0m | Client dcf68541-38bf-4793-ac52-d4c5bf2ab5c0 disconnected
-[32m2025-10-05 13:16:07[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_disconnect[0m:[36m316[0m | Client dcf68541-38bf-4793-ac52-d4c5bf2ab5c0 disconnected
-INFO:     connection closed
-INFO:     127.0.0.1:55404 - "WebSocket /client-ws" [accepted]
-[32m2025-10-05 13:16:07[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
-[32m2025-10-05 13:16:07[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
-[32m2025-10-05 13:16:07[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:16:07[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-INFO:     connection open
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 13:16:08] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-INFO:     ::1:55388 - "GET /undefined/undefined.model3.json HTTP/1.1" 404 Not Found
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 13:16:08] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_new_connection[0m:[36m126[0m | Connection established for client a1456b96-7da6-4308-985c-9f8765581e26
-[32m2025-10-05 13:16:08[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mset_memory_from_history[0m:[36m193[0m | Loaded 0 messages from history.
-INFO:     ::1:55972 - "GET / HTTP/1.1" 304 Not Modified
-[32m2025-10-05 13:40:16[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_websocket_communication[0m:[36m234[0m | Client a1456b96-7da6-4308-985c-9f8765581e26 disconnected
-[32m2025-10-05 13:40:16[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_disconnect[0m:[36m316[0m | Client a1456b96-7da6-4308-985c-9f8765581e26 disconnected
-INFO:     connection closed
-INFO:     ::1:55972 - "GET /assets/main-CKgUHFa9.js HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:55974 - "WebSocket /client-ws" [accepted]
-[32m2025-10-05 13:40:16[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
-[32m2025-10-05 13:40:16[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
-[32m2025-10-05 13:40:16[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:40:16[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-INFO:     connection open
-[32m2025-10-05 13:40:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 13:40:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-INFO:     ::1:55972 - "GET /undefined/undefined.model3.json HTTP/1.1" 404 Not Found
-[32m2025-10-05 13:40:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 13:40:17] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 13:40:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 13:40:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 13:40:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
-[32m2025-10-05 13:40:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
-[32m2025-10-05 13:40:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
-[32m2025-10-05 13:40:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:40:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-[32m2025-10-05 13:40:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 13:40:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 13:40:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 13:40:18] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 13:40:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 13:40:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 13:40:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
-[32m2025-10-05 13:40:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
-[32m2025-10-05 13:40:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:40:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
-[32m2025-10-05 13:40:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
-[32m2025-10-05 13:40:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
-[32m2025-10-05 13:40:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_new_connection[0m:[36m126[0m | Connection established for client 84fe6eb5-e409-47d5-b508-e8c5c19f4d22
-[32m2025-10-05 13:40:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.chat_history_manager[0m:[36mget_history_list[0m:[36m297[0m | Removed empty history file: 2025-10-05_13-16-08_7bbbd88e3e684b9cbbaab291327cab11
-[32m2025-10-05 13:40:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mset_memory_from_history[0m:[36m193[0m | Loaded 0 messages from history.
-[32m2025-10-05 13:40:20[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🐹 started!
-[32m2025-10-05 13:40:20[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 13:40:21[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: Is this something that I can?
-INFO:     ::1:55973 - "GET / HTTP/1.1" 304 Not Modified
-[32m2025-10-05 13:40:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_websocket_communication[0m:[36m234[0m | Client 84fe6eb5-e409-47d5-b508-e8c5c19f4d22 disconnected
-[32m2025-10-05 13:40:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_disconnect[0m:[36m316[0m | Client 84fe6eb5-e409-47d5-b508-e8c5c19f4d22 disconnected
-[32m2025-10-05 13:40:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m178[0m | 🤡👍 Conversation 🐹 cancelled because interrupted.
-INFO:     connection closed
-INFO:     127.0.0.1:55984 - "WebSocket /client-ws" [accepted]
-[32m2025-10-05 13:40:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
-[32m2025-10-05 13:40:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
-[32m2025-10-05 13:40:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:40:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-INFO:     connection open
-[32m2025-10-05 13:40:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 13:40:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-INFO:     ::1:55973 - "GET /undefined/undefined.model3.json HTTP/1.1" 404 Not Found
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 13:40:29] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 13:40:29] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_new_connection[0m:[36m126[0m | Connection established for client 4572f5db-47af-4185-8a95-2e6e1740e7de
-[32m2025-10-05 13:40:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mset_memory_from_history[0m:[36m193[0m | Loaded 0 messages from history.
-[32m2025-10-05 13:52:16[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_websocket_communication[0m:[36m234[0m | Client 4572f5db-47af-4185-8a95-2e6e1740e7de disconnected
-[32m2025-10-05 13:52:16[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_disconnect[0m:[36m316[0m | Client 4572f5db-47af-4185-8a95-2e6e1740e7de disconnected
-INFO:     connection closed
-INFO:     ::1:56575 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     ::1:56575 - "GET /assets/main-CKgUHFa9.js HTTP/1.1" 304 Not Modified
-INFO:     ::1:56576 - "GET /assets/main-QEkl09-0.css HTTP/1.1" 200 OK
-INFO:     ::1:56576 - "GET /libs/live2dcubismcore.js HTTP/1.1" 200 OK
-INFO:     127.0.0.1:56577 - "GET /bg/ceiling-window-room-night.jpeg HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56578 - "WebSocket /client-ws" [accepted]
-[32m2025-10-05 14:02:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
-[32m2025-10-05 14:02:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
-[32m2025-10-05 14:02:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:02:37[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-INFO:     connection open
-INFO:     ::1:56576 - "GET /favicon.ico HTTP/1.1" 200 OK
-INFO:     ::1:56576 - "GET /undefined/undefined.model3.json HTTP/1.1" 404 Not Found
-[32m2025-10-05 14:02:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 14:02:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 14:02:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 14:02:38] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 14:02:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 14:02:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 14:02:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
-[32m2025-10-05 14:02:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
-[32m2025-10-05 14:02:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
-[32m2025-10-05 14:02:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:02:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 14:02:39] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_new_connection[0m:[36m126[0m | Connection established for client 632a85e1-7748-41e7-a2bc-f946c8db6d6e
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.chat_history_manager[0m:[36mget_history_list[0m:[36m297[0m | Removed empty history file: 2025-10-05_13-40-29_98a7b10d2da247c29f728bcd4acd179b
-[32m2025-10-05 14:02:39[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mset_memory_from_history[0m:[36m193[0m | Loaded 0 messages from history.
-INFO:     ::1:56576 - "GET /libs/silero_vad_v5.onnx HTTP/1.1" 200 OK
-INFO:     ::1:56576 - "GET /libs/ort-wasm-simd.wasm HTTP/1.1" 200 OK
-INFO:     ::1:56576 - "GET /libs/vad.worklet.bundle.min.js HTTP/1.1" 200 OK
-INFO:     127.0.0.1:56581 - "GET /live2d-models/mao_pro/runtime/mao_pro.model3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56581 - "GET /live2d-models/mao_pro/runtime/mao_pro.moc3 HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56581 - "GET /live2d-models/mao_pro/runtime/expressions/exp_01.exp3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56582 - "GET /live2d-models/mao_pro/runtime/expressions/exp_03.exp3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56583 - "GET /live2d-models/mao_pro/runtime/expressions/exp_02.exp3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56584 - "GET /live2d-models/mao_pro/runtime/expressions/exp_04.exp3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56585 - "GET /live2d-models/mao_pro/runtime/expressions/exp_05.exp3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56586 - "GET /live2d-models/mao_pro/runtime/expressions/exp_06.exp3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56581 - "GET /live2d-models/mao_pro/runtime/expressions/exp_08.exp3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56582 - "GET /live2d-models/mao_pro/runtime/expressions/exp_07.exp3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56582 - "GET /live2d-models/mao_pro/runtime/mao_pro.physics3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56582 - "GET /live2d-models/mao_pro/runtime/mao_pro.pose3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56585 - "GET /live2d-models/mao_pro/runtime/motions/special_01.motion3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56581 - "GET /live2d-models/mao_pro/runtime/motions/mtn_03.motion3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56582 - "GET /live2d-models/mao_pro/runtime/motions/mtn_01.motion3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56586 - "GET /live2d-models/mao_pro/runtime/motions/mtn_04.motion3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56583 - "GET /live2d-models/mao_pro/runtime/motions/special_02.motion3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56584 - "GET /live2d-models/mao_pro/runtime/motions/mtn_02.motion3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56581 - "GET /live2d-models/mao_pro/runtime/motions/special_03.motion3.json HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56581 - "GET /live2d-models/mao_pro/runtime/mao_pro.4096/texture_00.png HTTP/1.1" 304 Not Modified
-[32m2025-10-05 14:07:43[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_websocket_communication[0m:[36m234[0m | Client 632a85e1-7748-41e7-a2bc-f946c8db6d6e disconnected
-[32m2025-10-05 14:07:43[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_disconnect[0m:[36m316[0m | Client 632a85e1-7748-41e7-a2bc-f946c8db6d6e disconnected
-INFO:     connection closed
-INFO:     ::1:56781 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     ::1:56781 - "GET /assets/main-CKgUHFa9.js HTTP/1.1" 304 Not Modified
-INFO:     ::1:56782 - "GET /assets/main-QEkl09-0.css HTTP/1.1" 304 Not Modified
-INFO:     ::1:56781 - "GET /libs/live2dcubismcore.js HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56783 - "WebSocket /client-ws" [accepted]
-[32m2025-10-05 14:14:49[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
-[32m2025-10-05 14:14:49[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
-[32m2025-10-05 14:14:49[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:14:49[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-INFO:     connection open
-INFO:     ::1:56781 - "GET /favicon.ico HTTP/1.1" 304 Not Modified
-INFO:     ::1:56781 - "GET /undefined/undefined.model3.json HTTP/1.1" 404 Not Found
-[32m2025-10-05 14:14:50[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 14:14:50[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 14:14:50[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 14:14:50] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 14:14:50[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 14:14:50[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 14:14:50[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
-[32m2025-10-05 14:14:50[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
-[32m2025-10-05 14:14:50[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
-[32m2025-10-05 14:14:50[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:14:50[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 14:14:51] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_new_connection[0m:[36m126[0m | Connection established for client 9e5bb882-5dbb-41bb-afa2-d616fa85b576
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.chat_history_manager[0m:[36mget_history_list[0m:[36m297[0m | Removed empty history file: 2025-10-05_14-02-39_38b7c330fe9f4067ac54e811c1456e2e
-[32m2025-10-05 14:14:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mset_memory_from_history[0m:[36m193[0m | Loaded 0 messages from history.
-INFO:     ::1:56781 - "GET /libs/silero_vad_v5.onnx HTTP/1.1" 304 Not Modified
-INFO:     ::1:56781 - "GET /libs/ort-wasm-simd.wasm HTTP/1.1" 304 Not Modified
-INFO:     ::1:56781 - "GET /libs/vad.worklet.bundle.min.js HTTP/1.1" 304 Not Modified
-[32m2025-10-05 14:14:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🦊 started!
-[32m2025-10-05 14:14:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:14:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: 一个。
-INFO:     ::1:56796 - "GET / HTTP/1.1" 304 Not Modified
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_websocket_communication[0m:[36m234[0m | Client 9e5bb882-5dbb-41bb-afa2-d616fa85b576 disconnected
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_disconnect[0m:[36m316[0m | Client 9e5bb882-5dbb-41bb-afa2-d616fa85b576 disconnected
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m178[0m | 🤡👍 Conversation 🦊 cancelled because interrupted.
-INFO:     connection closed
-INFO:     127.0.0.1:56798 - "WebSocket /client-ws" [accepted]
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-INFO:     connection open
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-INFO:     ::1:56796 - "GET /undefined/undefined.model3.json HTTP/1.1" 404 Not Found
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 14:14:57] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:14:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 14:14:58] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_new_connection[0m:[36m126[0m | Connection established for client 5c281016-099a-4bd6-b8c7-26dbea64f1ff
-[32m2025-10-05 14:14:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mset_memory_from_history[0m:[36m193[0m | Loaded 0 messages from history.
-[32m2025-10-05 14:15:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🌹 started!
-[32m2025-10-05 14:15:17[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:15:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: So what my supposed to say, maybe I'm tired.
-[32m2025-10-05 14:15:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_handler[0m:[36mhandle_individual_interrupt[0m:[36m122[0m | 🛑 Conversation task was successfully interrupted
-[32m2025-10-05 14:15:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mhandle_interrupt[0m:[36m223[0m | Handled interrupt with role 'system'.
-[32m2025-10-05 14:15:18[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m178[0m | 🤡👍 Conversation 🌹 cancelled because interrupted.
-[32m2025-10-05 14:15:22[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🐴 started!
-[32m2025-10-05 14:15:22[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:15:23[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: 单はいは.
-INFO:     127.0.0.1:56815 - "GET /avatars/mao.png HTTP/1.1" 304 Not Modified
-[32m2025-10-05 14:15:27[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_handler[0m:[36mhandle_individual_interrupt[0m:[36m122[0m | 🛑 Conversation task was successfully interrupted
-[32m2025-10-05 14:15:27[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mhandle_interrupt[0m:[36m223[0m | Handled interrupt with role 'system'.
-[32m2025-10-05 14:15:27[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m178[0m | 🤡👍 Conversation 🐴 cancelled because interrupted.
-[32m2025-10-05 14:15:32[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🌱 started!
-[32m2025-10-05 14:15:32[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:15:32[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: You buildings the actual tool.
-INFO:     ::1:56797 - "GET / HTTP/1.1" 304 Not Modified
-[32m2025-10-05 14:15:34[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_websocket_communication[0m:[36m234[0m | Client 5c281016-099a-4bd6-b8c7-26dbea64f1ff disconnected
-[32m2025-10-05 14:15:34[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_disconnect[0m:[36m316[0m | Client 5c281016-099a-4bd6-b8c7-26dbea64f1ff disconnected
-[32m2025-10-05 14:15:34[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m178[0m | 🤡👍 Conversation 🌱 cancelled because interrupted.
-INFO:     connection closed
-INFO:     127.0.0.1:56827 - "WebSocket /client-ws" [accepted]
-[32m2025-10-05 14:15:34[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
-[32m2025-10-05 14:15:34[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
-[32m2025-10-05 14:15:34[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:15:34[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-INFO:     connection open
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-INFO:     ::1:56797 - "GET /undefined/undefined.model3.json HTTP/1.1" 404 Not Found
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 14:15:35] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 14:15:35] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_new_connection[0m:[36m126[0m | Connection established for client 4a1d9785-16e0-4525-99f7-b084cfd40738
-[32m2025-10-05 14:15:35[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mset_memory_from_history[0m:[36m193[0m | Loaded 0 messages from history.
-INFO:     ::1:56826 - "GET / HTTP/1.1" 304 Not Modified
-[32m2025-10-05 14:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_websocket_communication[0m:[36m234[0m | Client 4a1d9785-16e0-4525-99f7-b084cfd40738 disconnected
-[32m2025-10-05 14:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_disconnect[0m:[36m316[0m | Client 4a1d9785-16e0-4525-99f7-b084cfd40738 disconnected
-INFO:     connection closed
-INFO:     127.0.0.1:56836 - "WebSocket /client-ws" [accepted]
-[32m2025-10-05 14:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
-[32m2025-10-05 14:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
-[32m2025-10-05 14:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:15:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-INFO:     connection open
-INFO:     ::1:56826 - "GET /undefined/undefined.model3.json HTTP/1.1" 404 Not Found
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 14:15:55] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 14:15:55] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_new_connection[0m:[36m126[0m | Connection established for client 09e1b393-1cf4-4132-88fe-de15d96dd388
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.chat_history_manager[0m:[36mget_history_list[0m:[36m297[0m | Removed empty history file: 2025-10-05_14-15-35_f5d5cce1ffae4546a6ae8c6a5e1eb23a
-[32m2025-10-05 14:15:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mset_memory_from_history[0m:[36m193[0m | Loaded 0 messages from history.
-[32m2025-10-05 14:16:12[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🦁 started!
-[32m2025-10-05 14:16:12[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:16:12[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: Or I don't read Chinese. you can. You can say say English I just talk.
-[32m2025-10-05 14:16:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_handler[0m:[36mhandle_individual_interrupt[0m:[36m122[0m | 🛑 Conversation task was successfully interrupted
-[32m2025-10-05 14:16:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mhandle_interrupt[0m:[36m223[0m | Handled interrupt with role 'system'.
-[32m2025-10-05 14:16:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m178[0m | 🤡👍 Conversation 🦁 cancelled because interrupted.
-[32m2025-10-05 14:16:20[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🌹 started!
-[32m2025-10-05 14:16:20[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:16:21[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_handler[0m:[36mhandle_individual_interrupt[0m:[36m122[0m | 🛑 Conversation task was successfully interrupted
-[32m2025-10-05 14:16:21[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m178[0m | 🤡👍 Conversation 🌹 cancelled because interrupted.
-[32m2025-10-05 14:16:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🌈 started!
-[32m2025-10-05 14:16:28[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:16:29[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: I feel bored, I feel very bored today.
-[32m2025-10-05 14:16:40[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_handler[0m:[36mhandle_individual_interrupt[0m:[36m122[0m | 🛑 Conversation task was successfully interrupted
-[32m2025-10-05 14:16:40[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mhandle_interrupt[0m:[36m223[0m | Handled interrupt with role 'system'.
-[32m2025-10-05 14:16:40[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m178[0m | 🤡👍 Conversation 🌈 cancelled because interrupted.
-[32m2025-10-05 14:16:42[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain ⛄️ started!
-[32m2025-10-05 14:16:42[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:16:42[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input:  listening.
-[32m2025-10-05 14:16:44[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_handler[0m:[36mhandle_individual_interrupt[0m:[36m122[0m | 🛑 Conversation task was successfully interrupted
-[32m2025-10-05 14:16:44[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mhandle_interrupt[0m:[36m223[0m | Handled interrupt with role 'system'.
-[32m2025-10-05 14:16:44[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m178[0m | 🤡👍 Conversation ⛄️ cancelled because interrupted.
-[32m2025-10-05 14:16:46[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🐱 started!
-[32m2025-10-05 14:16:46[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:16:46[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: 嗯。
-[32m2025-10-05 14:16:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36msend_conversation_end_signal[0m:[36m212[0m | 😎👍✅ Conversation Chain 😊 completed!
-[32m2025-10-05 14:16:51[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m173[0m | AI response: I'm here,just listening with you.[neutral]
-[32m2025-10-05 14:16:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 👜 started!
-[32m2025-10-05 14:16:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:16:57[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: I can say more things, not you do it.
-[32m2025-10-05 14:16:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_handler[0m:[36mhandle_individual_interrupt[0m:[36m122[0m | 🛑 Conversation task was successfully interrupted
-[32m2025-10-05 14:16:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mhandle_interrupt[0m:[36m223[0m | Handled interrupt with role 'system'.
-[32m2025-10-05 14:16:58[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m178[0m | 🤡👍 Conversation 👜 cancelled because interrupted.
-[32m2025-10-05 14:17:00[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🐧 started!
-[32m2025-10-05 14:17:00[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:17:00[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: What can I do?
-[32m2025-10-05 14:17:07[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36msend_conversation_end_signal[0m:[36m212[0m | 😎👍✅ Conversation Chain 😊 completed!
-[32m2025-10-05 14:17:07[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m173[0m | AI response: Just keep sharing what's on your mind.I'm right here, listening.[neutral]
-[32m2025-10-05 14:17:11[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🐵 started!
-[32m2025-10-05 14:17:11[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:17:11[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: I have nothing to do today.
-[32m2025-10-05 14:17:20[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36msend_conversation_end_signal[0m:[36m212[0m | 😎👍✅ Conversation Chain 😊 completed!
-[32m2025-10-05 14:17:20[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m173[0m | AI response: That quiet emptiness can feel heavy sometimes.I'm right here with you in this stillness.[neutral]
-[32m2025-10-05 14:17:22[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mhandle_interrupt[0m:[36m223[0m | Handled interrupt with role 'system'.
-INFO:     ::1:56937 - "GET / HTTP/1.1" 304 Not Modified
-[32m2025-10-05 14:19:13[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_websocket_communication[0m:[36m234[0m | Client 09e1b393-1cf4-4132-88fe-de15d96dd388 disconnected
-[32m2025-10-05 14:19:13[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_disconnect[0m:[36m316[0m | Client 09e1b393-1cf4-4132-88fe-de15d96dd388 disconnected
-INFO:     connection closed
-INFO:     127.0.0.1:56939 - "WebSocket /client-ws" [accepted]
-[32m2025-10-05 14:19:13[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m120[0m | ServerRegistry initialized or referenced.
-[32m2025-10-05 14:19:13[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m223[0m | MC: Running dynamic tool construction for servers: ['time', 'ddg-search']
-[32m2025-10-05 14:19:13[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:19:13[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-INFO:     connection open
-[32m2025-10-05 14:19:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 14:19:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-INFO:     ::1:56937 - "GET /undefined/undefined.model3.json HTTP/1.1" 404 Not Found
-[32m2025-10-05 14:19:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 14:19:14] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 14:19:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 14:19:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 14:19:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_adapter[0m:[36mget_tools[0m:[36m231[0m | MC: Dynamic tool construction complete.
-[32m2025-10-05 14:19:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m138[0m | Dynamically generated MCP prompt string (length: 2085).
-[32m2025-10-05 14:19:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m141[0m | Dynamically formatted tools - OpenAI: 4, Claude: 4.
-[32m2025-10-05 14:19:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:19:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'time'...
-[32m2025-10-05 14:19:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'time'.
-[32m2025-10-05 14:19:14[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m50[0m | MCPC: Starting and connecting to server 'ddg-search'...
-[32m2025-10-05 14:19:15[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m_ensure_server_running_and_get_session[0m:[36m75[0m | MCPC: Successfully connected to server 'ddg-search'.
-[10/05/25 14:19:15] INFO     Processing request of type            server.py:664
-                             ListToolsRequest                                   
-[32m2025-10-05 14:19:15[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
-[32m2025-10-05 14:19:15[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
-[32m2025-10-05 14:19:15[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
-[32m2025-10-05 14:19:15[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
-[32m2025-10-05 14:19:15[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
-[32m2025-10-05 14:19:15[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
-[32m2025-10-05 14:19:15[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
-[32m2025-10-05 14:19:15[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
-[32m2025-10-05 14:19:15[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_new_connection[0m:[36m126[0m | Connection established for client 7168842f-dbdc-412c-94ab-d23ad9df4480
-[32m2025-10-05 14:19:15[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mset_memory_from_history[0m:[36m193[0m | Loaded 0 messages from history.
-[32m2025-10-05 14:23:44[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🌳 started!
-[32m2025-10-05 14:23:44[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:23:44[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: I'm sad today. Help me.
-[32m2025-10-05 14:23:52[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36msend_conversation_end_signal[0m:[36m212[0m | 😎👍✅ Conversation Chain 😊 completed!
-[32m2025-10-05 14:23:52[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m173[0m | AI response: I'm here to walk with you through it.[sadness] Your feelings are valid, and I'm right here with you.
-INFO:     ::1:57213 - "GET /libs/silero_vad_v5.onnx HTTP/1.1" 304 Not Modified
-INFO:     ::1:57213 - "GET /libs/vad.worklet.bundle.min.js HTTP/1.1" 304 Not Modified
-[32m2025-10-05 14:30:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🐶 started!
-[32m2025-10-05 14:30:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36mprocess_user_input[0m:[36m153[0m | Transcribing audio input...
-[32m2025-10-05 14:30:54[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: The.
-[32m2025-10-05 14:30:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_handler[0m:[36mhandle_individual_interrupt[0m:[36m122[0m | 🛑 Conversation task was successfully interrupted
-[32m2025-10-05 14:30:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mhandle_interrupt[0m:[36m223[0m | Handled interrupt with role 'system'.
-[32m2025-10-05 14:30:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m178[0m | 🤡👍 Conversation 🐶 cancelled because interrupted.
-[32m2025-10-05 14:32:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 👜 started!
-[32m2025-10-05 14:32:55[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: hey visora! how are you doing
-[32m2025-10-05 14:33:03[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36msend_conversation_end_signal[0m:[36m212[0m | 😎👍✅ Conversation Chain 😊 completed!
-[32m2025-10-05 14:33:03[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m173[0m | AI response: Hello,Thomas![joy] I'm so glad to see you.How are you feeling today?
-[32m2025-10-05 14:33:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m55[0m | New Conversation Chain 🥼 started!
-[32m2025-10-05 14:33:38[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m97[0m | User input: I'm feeling a bit under the weather from work
-[32m2025-10-05 14:33:47[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.conversation_utils[0m:[36msend_conversation_end_signal[0m:[36m212[0m | 😎👍✅ Conversation Chain 😊 completed!
-[32m2025-10-05 14:33:47[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.conversations.single_conversation[0m:[36mprocess_single_conversation[0m:[36m173[0m | AI response: I understand.[sadness] You've been putting in long hours lately—your energy must be running low.Let’s take a moment to just breathe.
-[32m2025-10-05 14:37:30[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_websocket_communication[0m:[36m234[0m | Client 7168842f-dbdc-412c-94ab-d23ad9df4480 disconnected
-[32m2025-10-05 14:37:30[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_disconnect[0m:[36m316[0m | Client 7168842f-dbdc-412c-94ab-d23ad9df4480 disconnected
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m159[0m | MCPC: Closing client instance and 2 active connections...
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36maclose[0m:[36m166[0m | MCPC: Client instance closed.
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.tool_manager[0m:[36m__init__[0m:[36m28[0m | ToolManager initialized with 4 OpenAI tools and 4 Claude tools.
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m155[0m | ToolManager initialized with dynamically fetched tools.
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.mcpp.mcp_client[0m:[36m__init__[0m:[36m41[0m | MCPC: Initialized MCPClient instance.
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m170[0m | MCPClient initialized for this session.
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m180[0m | ToolExecutor initialized for this session.
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.service_context[0m:[36m_init_mcp_components[0m:[36m187[0m | StreamJSONDetector initialized for this session.
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_new_connection[0m:[36m126[0m | Connection established for client 4bbd974e-a775-45d2-ab15-cb53dc996e2e
+[32m2025-10-09 18:19:45[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.agent.agents.basic_memory_agent[0m:[36mset_memory_from_history[0m:[36m193[0m | Loaded 0 messages from history.
+INFO:     127.0.0.1:51034 - "GET /live2d-models/mao_pro/runtime/mao_pro.model3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51034 - "GET /live2d-models/mao_pro/runtime/mao_pro.moc3 HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51034 - "GET /live2d-models/mao_pro/runtime/expressions/exp_02.exp3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51035 - "GET /live2d-models/mao_pro/runtime/expressions/exp_01.exp3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51037 - "GET /live2d-models/mao_pro/runtime/expressions/exp_04.exp3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51036 - "GET /live2d-models/mao_pro/runtime/expressions/exp_03.exp3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51038 - "GET /live2d-models/mao_pro/runtime/expressions/exp_05.exp3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51039 - "GET /live2d-models/mao_pro/runtime/expressions/exp_06.exp3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51035 - "GET /live2d-models/mao_pro/runtime/expressions/exp_08.exp3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51034 - "GET /live2d-models/mao_pro/runtime/expressions/exp_07.exp3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51034 - "GET /live2d-models/mao_pro/runtime/mao_pro.physics3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51034 - "GET /live2d-models/mao_pro/runtime/mao_pro.pose3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51034 - "GET /live2d-models/mao_pro/runtime/motions/mtn_02.motion3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51038 - "GET /live2d-models/mao_pro/runtime/motions/mtn_04.motion3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51035 - "GET /live2d-models/mao_pro/runtime/motions/special_02.motion3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51039 - "GET /live2d-models/mao_pro/runtime/motions/mtn_01.motion3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51037 - "GET /live2d-models/mao_pro/runtime/motions/special_03.motion3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51036 - "GET /live2d-models/mao_pro/runtime/motions/mtn_03.motion3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51034 - "GET /live2d-models/mao_pro/runtime/motions/special_01.motion3.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51034 - "GET /live2d-models/mao_pro/runtime/mao_pro.4096/texture_00.png HTTP/1.1" 200 OK
+[32m2025-10-09 18:21:16[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_websocket_communication[0m:[36m234[0m | Client 4bbd974e-a775-45d2-ab15-cb53dc996e2e disconnected
+[32m2025-10-09 18:21:16[0m | [1mINFO    [0m | [36msrc.open_llm_vtuber.websocket_handler[0m:[36mhandle_disconnect[0m:[36m316[0m | Client 4bbd974e-a775-45d2-ab15-cb53dc996e2e disconnected
 INFO:     connection closed

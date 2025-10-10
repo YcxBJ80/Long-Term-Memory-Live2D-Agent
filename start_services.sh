@@ -21,7 +21,7 @@ if curl -s http://127.0.0.1:8000/api/health > /dev/null 2>&1; then
 else
     echo "🔧 Starting memU service..."
     cd memU
-    nohup python -m memu.server.main > memu.log 2>&1 &
+    nohup python3.12 -m memu.server.main > memu.log 2>&1 &
     echo "   memU log: memU/memu.log"
     sleep 3
     if curl -s http://127.0.0.1:8000/api/health > /dev/null 2>&1; then
@@ -35,5 +35,5 @@ fi
 echo "🎭 Starting Open-LLM-VTuber..."
 cd Open-LLM-VTuber
 echo "   Access URL: http://localhost:12393"
-python run_server.py
+python3.12 run_server.py
 echo "Press Ctrl+C to stop services"
